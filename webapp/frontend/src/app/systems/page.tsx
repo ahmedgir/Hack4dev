@@ -23,25 +23,28 @@ const statusTone = {
 };
 
 export default function SystemsPage() {
+  const analysedSystems = systems.filter((system) => system.sessions.length > 0);
+  const awaitingSystems = systems.filter((system) => system.sessions.length === 0);
+
   return (
     <main>
       <SiteHeader />
       <section className="page-hero systems-hero">
         <div className="page-hero-inner">
           <p className="breadcrumb">HOME / TARGET SYSTEMS</p>
-          <p className="eyebrow">EIGHT TARGETS · VISIBLE STATUS</p>
-          <h1>The catalog, including what is not ready.</h1>
-          <p>Each card separates published system parameters from our own analysis status. Illustrations are labeled; telescope fields show the host star, not the planet itself.</p>
+          <p className="eyebrow">ONE PROMISING RECOVERY · FOUR NON-CONFIRMING RESULTS</p>
+          <h1>Evidence first. Targets second.</h1>
+          <p>All eight planets were already confirmed by published astronomy. Our own observations currently support one promising preliminary recovery: CoRoT-2 b.</p>
         </div>
       </section>
 
       <section className="catalog-shell">
         <div className="catalog-intro">
-          <div><p className="section-label">TARGET CATALOG</p><h2>Known planets. Independently inspected observations.</h2></div>
-          <p>Only CoRoT-2 b currently has a promising preliminary recovery. Incomplete and unanalysed targets remain visible so the portal never turns missing evidence into a success.</p>
+          <div><p className="section-label">REVIEWED EVIDENCE</p><h2>Five systems entered the pipeline. One produced a promising recovery.</h2></div>
+          <p>The other results are not “almost confirmed.” They are retained as transparent examples of incomplete coverage, excessive noise, or parameters that disagree with published values.</p>
         </div>
         <div className="system-grid">
-          {systems.map((system) => {
+          {analysedSystems.map((system) => {
             const status = getSystemStatus(system);
             return (
             <article className="system-card" key={system.slug}>
@@ -72,10 +75,18 @@ export default function SystemsPage() {
             </article>
           );})}
         </div>
-      </section>
-      <section className="page-cta source-cta">
-        <div><p className="section-label">IMAGE PROVENANCE</p><h2>Every visual has a traceable origin.</h2></div>
-        <Link className="nasa-button" href="/sources">Review image sources <span aria-hidden="true">→</span></Link>
+        <section className="awaiting-catalog">
+          <div className="awaiting-heading"><p className="section-label">AWAITING ANALYSIS</p><h2>Configured targets without a reviewed result.</h2><p>These systems remain in the dataset, but we do not reuse a generic planet image or imply that evidence has been produced.</p></div>
+          <div className="awaiting-grid">
+            {awaitingSystems.map((system) => (
+              <article className="awaiting-card" key={system.slug}>
+                <div><p>{system.discoverySurvey}</p><h3>{system.planetName}</h3>{system.alias && <small>Also cataloged as {system.alias}</small>}</div>
+                <dl><div><dt>Period</dt><dd>{system.periodDays} d</dd></div><div><dt>Published depth</dt><dd>{system.publishedDepthPercent}%</dd></div></dl>
+                <Link className="text-link" href={`/systems/${system.slug}`}>View target record</Link>
+              </article>
+            ))}
+          </div>
+        </section>
       </section>
       <SiteFooter />
     </main>

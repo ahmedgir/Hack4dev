@@ -36,12 +36,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const system = getSystem((await params).slug);
   if (!system) return {};
-  const image = system.sessions[0]?.fieldImagePath ?? system.catalogImagePath;
+  const image = system.sessions[0]?.fieldImagePath;
   return {
     title: `${system.planetName} evidence`,
     description: system.shortDescription,
-    openGraph: { title: `${system.planetName} — Exoplanet Data Portal`, description: system.shortDescription, images: [{ url: image, alt: system.imageLabel }] },
-    twitter: { card: "summary_large_image", title: `${system.planetName} — Exoplanet Data Portal`, description: system.shortDescription, images: [image] },
+    openGraph: { title: `${system.planetName} — Exoplanet Data Portal`, description: system.shortDescription, images: image ? [{ url: image, alt: system.imageLabel }] : [] },
+    twitter: { card: "summary_large_image", title: `${system.planetName} — Exoplanet Data Portal`, description: system.shortDescription, images: image ? [image] : [] },
   };
 }
 
@@ -57,8 +57,8 @@ export default async function SystemPage({ params }: Props) {
   return (
     <main>
       <SiteHeader />
-      <section className="page-hero page-hero-image system-detail-hero">
-        <img src={firstSession?.fieldImagePath ?? system.catalogImagePath} alt={system.imageLabel} />
+      <section className={`page-hero system-detail-hero ${firstSession ? "page-hero-image" : "system-detail-no-image"}`}>
+        {firstSession && <img src={firstSession.fieldImagePath} alt={system.imageLabel} />}
         <div className="hero-overlay" />
         <div className="page-hero-inner">
           <p className="breadcrumb">HOME / SYSTEMS / {system.planetName.toUpperCase()}</p>

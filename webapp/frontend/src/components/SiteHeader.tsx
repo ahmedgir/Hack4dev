@@ -18,13 +18,11 @@ export function SiteHeader() {
           <Link href="/methodology">Methodology</Link>
           <Link href="/about">About</Link>
         </nav>
-        <span className="search-label" aria-hidden="true">⌕</span>
       </div>
       <nav className="section-nav" aria-label="Portal sections">
         <strong>Transit Explorer</strong>
         <Link href="/systems">Target catalog</Link>
         <Link href="/methodology">From FITS to evidence</Link>
-        <Link href="/systems/corot-2">CoRoT-2 b</Link>
         <Link href="/sources">Sources &amp; credits</Link>
       </nav>
     </header>
