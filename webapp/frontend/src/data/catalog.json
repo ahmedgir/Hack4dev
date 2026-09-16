@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "corot-2",
+    "starName": "CoRoT-2",
+    "planetName": "CoRoT-2 b",
+    "discoverySurvey": "CoRoT",
+    "periodDays": 1.7429935,
+    "publishedDepthPercent": 2.75,
+    "durationHours": 2.26704,
+    "raDeg": 291.7770457,
+    "decDeg": 1.3836634,
+    "shortDescriptionAr": "عملاق غازي معروف يمر أمام نجمه كل 1.74 يوم. استعدنا إشارة عبوره بصورة أولية في ليلتين مستقلتين.",
+    "sessions": [
+      {
+        "id": "corot-2-2026-08-09",
+        "date": "2026-08-09",
+        "totalFrames": 87,
+        "acceptedFrames": 73,
+        "status": "promising_preliminary_transit",
+        "summaryPath": "/data/systems/corot-2/2026-08-09/summary.json",
+        "lightCurvePath": "/data/systems/corot-2/2026-08-09/light-curve.json",
+        "fieldImagePath": "/media/systems/corot-2/2026-08-09/verified-field.png"
+      }
+    ]
+  }
+]
