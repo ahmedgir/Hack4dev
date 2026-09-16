@@ -1,0 +1,32 @@
+{
+  "WASP-10": {
+    "planet_name": "WASP-10 b",
+    "ra_deg": 348.9930457,
+    "dec_deg": 31.4627508,
+    "period_days": 3.0927616,
+    "epoch_bjd": 2454664.037295,
+    "duration_hours": 2.2271,
+    "published_depth_percent": 2.525,
+    "gaia_mag": 12.1739
+  },
+  "WASP-2": {
+    "planet_name": "WASP-2 b",
+    "ra_deg": 307.7255587,
+    "dec_deg": 6.4293305,
+    "period_days": 2.152175,
+    "epoch_bjd": 2458339.00342,
+    "duration_hours": 1.78824,
+    "published_depth_percent": 1.646,
+    "gaia_mag": 11.5638
+  },
+  "CoRoT-2": {
+    "planet_name": "CoRoT-2 b",
+    "ra_deg": 291.7770457,
+    "dec_deg": 1.3836634,
+    "period_days": 1.7429935,
+    "epoch_bjd": 2454237.53556,
+    "duration_hours": 2.26704,
+    "published_depth_percent": 2.75,
+    "gaia_mag": 12.2489
+  }
+}

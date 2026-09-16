@@ -1,0 +1,19 @@
+name: exoplanet-poc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy=1.26.4
+  - pandas=2.2.3
+  - scipy=1.14.1
+  - matplotlib=3.9.4
+  - astropy=6.1.7
+  - photutils=2.0.2
+  - jupyterlab=4.6.3
+  - ipywidgets=8.1.9
+  - pip:
+      - exotic==4.3.1
+      - astroalign==2.6.2
+      - plotly==7.0.0
+      - sep

@@ -1,0 +1,29 @@
+# Raw dataset: about 1.1 GB. Keep it outside Git.
+database/observations/
+database/calibration/
+
+# Local experiments and generated previews
+tmp/
+outputs/notebook_preview/
+Untitled*.ipynb
+exotic.log
+
+# Jupyter and Python caches
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# Local environments and secrets
+.env
+.venv/
+venv/
+*.key
+*.pem
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
