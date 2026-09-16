@@ -13,6 +13,8 @@ outputs/**/plate_solve_*.png
 outputs/notebook_preview/
 Untitled*.ipynb
 exotic.log
+eaConf.json
+pl_names.json
 
 # Jupyter and Python caches
 .ipynb_checkpoints/
