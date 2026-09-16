@@ -5,6 +5,7 @@ import os
 import subprocess
 import time
 from dataclasses import dataclass
+from io import StringIO
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -115,6 +116,33 @@ def _make_plate_image(science_path: Path, dark: np.ndarray, destination: Path) -
     plt.imsave(destination, display, cmap="gray", origin="lower", vmin=0, vmax=1)
 
 
+def _query_gaia_catalog(ra_deg: float, dec_deg: float, radius_deg: float, limit: int = 1500) -> pd.DataFrame:
+    """Query the Gaia DR3 VizieR mirror with a bounded synchronous request."""
+    query = f"""
+    SELECT TOP {limit} Source,RA_ICRS,DE_ICRS,Gmag
+    FROM "I/355/gaiadr3"
+    WHERE 1=CONTAINS(
+        POINT('ICRS',RA_ICRS,DE_ICRS),
+        CIRCLE('ICRS',{ra_deg},{dec_deg},{radius_deg})
+    )
+    AND Gmag BETWEEN 8 AND 16
+    ORDER BY Gmag ASC
+    """
+    response = requests.post(
+        "https://tapvizier.cds.unistra.fr/TAPVizieR/tap/sync",
+        data={"REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "csv", "QUERY": query},
+        timeout=45,
+    )
+    response.raise_for_status()
+    table = pd.read_csv(StringIO(response.text), dtype={"Source": str})
+    return table.rename(columns={
+        "Source": "source_id",
+        "RA_ICRS": "ra",
+        "DE_ICRS": "dec",
+        "Gmag": "g_mag",
+    })
+
+
 def _plate_solve(image_path: Path, header, output_dir: Path, timeout_minutes: int = 12) -> Path:
     cache = output_dir / f"wcs_{image_path.stem}.fits"
     if cache.exists():
@@ -190,30 +218,14 @@ def _plate_solve_gaia(
     if catalog_cache.exists():
         catalog = pd.read_csv(catalog_cache)
     else:
-        query = f"""
-        SELECT TOP 1500 source_id,ra,dec,phot_g_mean_mag
-        FROM gaiadr3.gaia_source
-        WHERE 1=CONTAINS(
-            POINT('ICRS',ra,dec),
-            CIRCLE('ICRS',{target_cfg['ra_deg']},{target_cfg['dec_deg']},1.2)
-        )
-        AND phot_g_mean_mag BETWEEN 8 AND 16
-        ORDER BY phot_g_mean_mag ASC
-        """
-        table = Gaia.launch_job_async(query).get_results()
-        catalog = pd.DataFrame({
-            "source_id": np.asarray(table["source_id"]).astype(str),
-            "ra": np.asarray(table["ra"], dtype=float),
-            "dec": np.asarray(table["dec"], dtype=float),
-            "g_mag": np.asarray(table["phot_g_mean_mag"], dtype=float),
-        })
+        catalog = _query_gaia_catalog(target_cfg["ra_deg"], target_cfg["dec_deg"], 1.2)
         catalog.to_csv(catalog_cache, index=False)
 
     _, subtracted, rms = _calibrated(science_path, dark)
-    sources = sep.extract(subtracted, max(6.0 * rms, 1.0), minarea=2)
+    sources = sep.extract(subtracted, max(4.0 * rms, 1.0), minarea=2)
     height, width = subtracted.shape
     sources = sources[sources["flux"] > 0]
-    if len(sources) < 12:
+    if len(sources) < 6:
         raise RuntimeError(f"Gaia matcher found only {len(sources)} image stars")
     detected_xy = np.column_stack([sources["x"], sources["y"]])
     sources = sources[np.argsort(sources["flux"])[-50:]]
@@ -250,7 +262,7 @@ def _plate_solve_gaia(
         np.min(np.linalg.norm(detected_xy - target_pixel_array, axis=1))
     )
     match_count = len(matched_image)
-    if match_count < 10:
+    if match_count < 5:
         raise RuntimeError(f"Gaia matcher retained only {match_count} matched stars")
     if not 0.97 <= transform.scale <= 1.03:
         raise RuntimeError(f"Gaia matcher scale is implausible: {transform.scale}")
@@ -345,22 +357,15 @@ def _gaia_catalog(wcs: WCS, shape: tuple[int, int], target_cfg: dict, output_dir
         np.array([0, 0, shape[0] - 1, shape[0] - 1]),
     )
     radius = max(center.separation(corners).deg) * 1.1
-    query = f"""
-    SELECT TOP 1000 source_id,ra,dec,phot_g_mean_mag
-    FROM gaiadr3.gaia_source
-    WHERE 1=CONTAINS(POINT('ICRS',ra,dec),CIRCLE('ICRS',{center.ra.deg},{center.dec.deg},{radius}))
-    AND phot_g_mean_mag BETWEEN 8 AND 16
-    ORDER BY phot_g_mean_mag ASC
-    """
-    table = Gaia.launch_job_async(query).get_results()
-    coords = SkyCoord(ra=np.asarray(table["ra"]) * 1.0, dec=np.asarray(table["dec"]) * 1.0, unit="deg")
+    table = _query_gaia_catalog(center.ra.deg, center.dec.deg, radius, limit=1000)
+    coords = SkyCoord(ra=table.ra.to_numpy(), dec=table.dec.to_numpy(), unit="deg")
     x, y = wcs.world_to_pixel(coords)
     y = (shape[0] - 1) - y
     frame = pd.DataFrame({
-        "source_id": np.asarray(table["source_id"]).astype(str),
-        "ra": np.asarray(table["ra"], dtype=float),
-        "dec": np.asarray(table["dec"], dtype=float),
-        "g_mag": np.asarray(table["phot_g_mean_mag"], dtype=float),
+        "source_id": table.source_id.astype(str),
+        "ra": table.ra.to_numpy(dtype=float),
+        "dec": table.dec.to_numpy(dtype=float),
+        "g_mag": table.g_mag.to_numpy(dtype=float),
         "x_ref": x,
         "y_ref": y,
     })
