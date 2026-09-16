@@ -28,5 +28,55 @@
     "duration_hours": 2.26704,
     "published_depth_percent": 2.75,
     "gaia_mag": 12.2489
+  },
+  "TRES-1": {
+    "planet_name": "TrES-1 b",
+    "ra_deg": 286.0408755,
+    "dec_deg": 36.6325360,
+    "period_days": 3.03007,
+    "epoch_bjd": 2453186.806341,
+    "duration_hours": 2.508,
+    "published_depth_percent": 1.8,
+    "gaia_mag": 11.5565
+  },
+  "TRES-3": {
+    "planet_name": "TrES-3 b",
+    "ra_deg": 268.0291106,
+    "dec_deg": 37.5463268,
+    "period_days": 1.30618581,
+    "epoch_bjd": 2454185.9104,
+    "duration_hours": 1.4177746,
+    "published_depth_percent": 2.739,
+    "gaia_mag": 12.1995
+  },
+  "TRES-5": {
+    "planet_name": "TrES-5 b",
+    "ra_deg": 305.2219454,
+    "dec_deg": 59.4489033,
+    "period_days": 1.48224686,
+    "epoch_bjd": 2456458.59219,
+    "duration_hours": 1.595,
+    "published_depth_percent": 2.192,
+    "gaia_mag": 13.4599
+  },
+  "Qatar-1": {
+    "planet_name": "Qatar-1 b",
+    "ra_deg": 303.3818697,
+    "dec_deg": 65.1623313,
+    "period_days": 1.4200242,
+    "epoch_bjd": 2456234.103218,
+    "duration_hours": 1.66104,
+    "published_depth_percent": 2.14,
+    "gaia_mag": 12.4764
+  },
+  "HATP-10": {
+    "planet_name": "HAT-P-10 b / WASP-11 b",
+    "ra_deg": 47.3689472,
+    "dec_deg": 30.6733817,
+    "period_days": 3.72247,
+    "epoch_bjd": 2456933.615316,
+    "duration_hours": 2.556,
+    "published_depth_percent": 1.6,
+    "gaia_mag": 11.5535
   }
 }

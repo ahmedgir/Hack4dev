@@ -170,7 +170,7 @@ This makes ASTAP callable by Python or Codex without opening its GUI. Verify the
 python scripts\check_astap.py
 ```
 
-Current status: installation and CLI/database discovery pass, but ASTAP did not solve the small `650×500` CoRoT-2 reference frame during initial tuning, even though Astrometry.net solved it. ASTAP is therefore **not yet the production solver**. Existing targets require no solver call because their WCS files are cached. For a new field, the pipeline continues to use Astrometry.net until ASTAP preprocessing is validated.
+Current status: installation and CLI/database discovery pass. ASTAP was then called automatically on all 18 sessions without cached WCS and solved zero. The repeated failure is associated with the small `650×500`, strongly undersampled fields. ASTAP is therefore **not the production solver for this dataset**. For a new field, the pipeline records the ASTAP attempt, falls back to Astrometry.net, and caches a successful WCS.
 
 ### Project POC pipeline
 
@@ -186,6 +186,19 @@ Run one session (a new session may require an initial online plate solve):
 
 ```powershell
 .\run_poc.ps1 --target WASP-10 --date 2026-08-08
+```
+
+Audit every FITS file and prove session-level completeness:
+
+```powershell
+python scripts\audit_dataset.py
+python scripts\build_completeness_report.py
+```
+
+Generate frame-by-frame WebP assets for the future Timeline:
+
+```powershell
+python scripts\build_timeline_previews.py --target CoRoT-2 --date 2026-08-09
 ```
 
 ## Proof-of-concept datasets

@@ -4,6 +4,12 @@ database/calibration/
 
 # Local experiments and generated previews
 tmp/
+outputs/**/timeline_frames/
+outputs/**/astap_*.fits
+outputs/**/astap_*.ini
+outputs/**/astap_*.log
+outputs/**/astap_attempt.json
+outputs/**/plate_solve_*.png
 outputs/notebook_preview/
 Untitled*.ipynb
 exotic.log

@@ -1,0 +1,23 @@
+date,target,science_frames,audited_frames,audit_all_read_ok,astap_attempted,astap_success,wcs_available,pipeline_complete,photometry_frames,timeline_frames,all_frames_accounted_for,accepted_frames,scientific_status,plate_solution
+2026-08-06,TRES-1,91,91,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-08,WASP-10,86,86,True,False,False,True,True,86,86,True,31.0,insufficient_for_transit_claim,astrometry.net WCS cache
+2026-08-09,CoRoT-2,87,87,True,False,False,True,True,87,87,True,73.0,promising_preliminary_transit,astrometry.net WCS cache
+2026-08-10,TRES-3,70,70,True,True,False,True,True,70,70,True,34.0,insufficient_for_transit_claim,astrometry.net WCS cache
+2026-08-11,WASP-2,78,78,True,False,False,True,True,78,78,True,22.0,insufficient_for_transit_claim,astrometry.net WCS cache
+2026-08-14,TRES-3,51,51,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-16,CoRoT-2,86,86,True,True,False,True,True,86,86,True,85.0,promising_preliminary_transit,astrometry.net WCS cache
+2026-08-17,TRES-5,74,74,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-18,Qatar-1,75,75,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-20,TRES-5,74,74,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-21,Qatar-1,74,74,True,True,False,True,True,74,74,True,72.0,transit_like_but_parameters_inconsistent,astrometry.net WCS cache
+2026-08-23,CoRoT-2,86,86,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-24,WASP-2,77,77,True,False,False,True,True,77,77,True,40.0,insufficient_for_transit_claim,astrometry.net WCS cache
+2026-08-26,TRES-5,74,74,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-27,TRES-3,70,70,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-28,Qatar-1,73,73,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-29,TRES-5,74,74,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-30,CoRoT-2,87,87,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-08-31,TRES-3,70,70,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-09-01,TRES-5,74,74,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-09-04,TRES-5,57,57,True,True,False,False,False,0,0,False,,not_analysed,none
+2026-09-05,HATP-10,93,93,True,True,False,False,False,0,0,False,,not_analysed,none

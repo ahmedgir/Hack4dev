@@ -1,0 +1,10 @@
+{
+  "files_discovered": 1741,
+  "files_read_ok": 1741,
+  "files_failed": 0,
+  "science_files": 1681,
+  "dark_files": 60,
+  "science_headers_complete": 1681,
+  "more_than_half_saturated": 32,
+  "sha256_recorded": true
+}

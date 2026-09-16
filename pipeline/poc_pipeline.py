@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import json
+import os
+import subprocess
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -48,12 +50,20 @@ def _paths(root: Path, target: str, date: str) -> SessionPaths:
     return SessionPaths(root, target, date, session_dirs[0], dark_dir, output_dir)
 
 
-def _master_dark(paths: SessionPaths) -> tuple[np.ndarray, list[Path]]:
+def _master_dark(paths: SessionPaths) -> tuple[np.ndarray, list[Path], str]:
     dark_paths = sorted(paths.dark_dir.glob("*.fits"))
+    dark_source_date = paths.date
     if not dark_paths:
-        raise FileNotFoundError(f"No same-date dark frames in {paths.dark_dir}")
+        available = [path for path in (paths.root / "database" / "calibration").glob("*") if path.is_dir()]
+        if not available:
+            raise FileNotFoundError("No dark calibration directories are available")
+        nearest = min(available, key=lambda path: abs(pd.Timestamp(path.name) - pd.Timestamp(paths.date)))
+        dark_paths = sorted(nearest.glob("*.fits"))
+        dark_source_date = nearest.name
+    if not dark_paths:
+        raise FileNotFoundError(f"No dark frames found for {paths.date} or its nearest calibration date")
     stack = [fits.getdata(path).astype("float32") for path in dark_paths]
-    return np.median(stack, axis=0).astype("float32"), dark_paths
+    return np.median(stack, axis=0).astype("float32"), dark_paths, dark_source_date
 
 
 def _calibrated(path: Path, dark: np.ndarray) -> tuple[np.ndarray, np.ndarray, float]:
@@ -66,18 +76,25 @@ def _calibrated(path: Path, dark: np.ndarray) -> tuple[np.ndarray, np.ndarray, f
 def _select_reference(science_paths: list[Path], dark: np.ndarray) -> tuple[int, pd.DataFrame]:
     rows = []
     for index, path in enumerate(science_paths):
+        raw = fits.getdata(path)
+        saturated_fraction = float(np.mean(raw >= 4095))
         _, subtracted, rms = _calibrated(path, dark)
         objects = sep.extract(subtracted, max(4.0 * rms, 1.0), minarea=2)
         strong = objects[objects["peak"] > 8.0 * rms]
         stellar_signal = float(np.sum(np.sort(strong["flux"])[-40:])) if len(strong) else 0.0
+        usable_reference = saturated_fraction < 0.05 and len(strong) >= 5
         rows.append({
             "frame_index": index,
             "file_name": path.name,
             "background_rms": rms,
             "detected_sources": int(len(strong)),
-            "reference_score": stellar_signal / max(rms, 1e-6),
+            "saturated_fraction_4095": saturated_fraction,
+            "usable_reference": usable_reference,
+            "reference_score": stellar_signal / max(rms, 1e-6) if usable_reference else 0.0,
         })
     table = pd.DataFrame(rows)
+    if not table.usable_reference.any():
+        raise RuntimeError("No usable reference frame: all candidates are saturated or contain fewer than five stars")
     return int(table["reference_score"].idxmax()), table
 
 
@@ -85,8 +102,15 @@ def _make_plate_image(science_path: Path, dark: np.ndarray, destination: Path) -
     _, subtracted, _ = _calibrated(science_path, dark)
     clean = gaussian_filter(subtracted, 0.65)
     noise = _robust_sigma(clean)
-    high = float(np.nanpercentile(clean, 99.97))
-    display = np.clip((clean - 2 * noise) / max(high - 2 * noise, 1e-6), 0, 1) ** 0.55
+    # Ignore bright sensor borders when selecting the display stretch. They can
+    # otherwise suppress the actual stars until a solver sees an almost-black image.
+    core = clean[15:-15, 15:-15]
+    core_median = float(np.nanmedian(core))
+    core_noise = _robust_sigma(core)
+    low = core_median + 2.0 * core_noise
+    high = float(np.nanpercentile(core, 99.97))
+    scaled = np.clip((clean - low) / max(high - low, 1e-6), 0, 1)
+    display = np.arcsinh(12 * scaled) / np.arcsinh(12)
     plt.imsave(destination, display, cmap="gray", origin="lower", vmin=0, vmax=1)
 
 
@@ -148,6 +172,55 @@ def _plate_solve(image_path: Path, header, output_dir: Path, timeout_minutes: in
             raise RuntimeError(f"Astrometry.net job {jobid} failed")
         time.sleep(10)
     raise TimeoutError(f"Astrometry.net job {jobid} timed out")
+
+
+def _plate_solve_astap(science_path: Path, dark: np.ndarray, output_dir: Path) -> Path:
+    """Attempt a local ASTAP solve and return a FITS file containing WCS headers."""
+    local_app_data = os.environ.get("LOCALAPPDATA")
+    if not local_app_data:
+        raise RuntimeError("LOCALAPPDATA is unavailable; ASTAP discovery is Windows-specific")
+    executable = Path(local_app_data) / "Programs" / "ASTAP" / "astap_cli.exe"
+    if not executable.exists():
+        raise FileNotFoundError(f"ASTAP CLI not found: {executable}")
+    header = fits.getheader(science_path).copy()
+    _, subtracted, _ = _calibrated(science_path, dark)
+    # These MicroObservatory stars are severely undersampled (often ~1 px wide).
+    # Give ASTAP a positive, gently broadened detection image while preserving
+    # the original pixel grid so a successful WCS still maps to the raw frames.
+    clean = gaussian_filter(subtracted, 1.15)
+    core = clean[15:-15, 15:-15]
+    core_median = float(np.nanmedian(core))
+    core_noise = _robust_sigma(core)
+    low = core_median + 3.0 * core_noise
+    high = float(np.nanpercentile(core, 99.97))
+    astap_pixels = np.clip((clean - low) / max(high - low, 1e-6), 0, 1)
+    astap_pixels = (astap_pixels * 60000).astype("uint16")
+    astap_input = output_dir / f"astap_{science_path.stem}.fits"
+    fits.writeto(astap_input, astap_pixels, header, overwrite=True)
+    ra_hours = float(header["RA"]) / 15.0
+    south_pole_distance = float(header["DEC"]) + 90.0
+    command = [
+        str(executable), "-f", str(astap_input), "-r", "5", "-fov", "0.95",
+        "-ra", str(ra_hours), "-spd", str(south_pole_distance), "-D", "d20",
+        "-s", "500", "-t", "0.012", "-m", "1", "-speed", "slow", "-update", "-log",
+    ]
+    result = subprocess.run(command, capture_output=True, text=True, errors="replace", timeout=180)
+    solved_header = fits.getheader(astap_input)
+    solved = result.returncode == 0 and "CTYPE1" in solved_header and "CRVAL1" in solved_header
+    attempt = {
+        "solver": "ASTAP",
+        "success": solved,
+        "return_code": result.returncode,
+        "command": command,
+        "stdout": result.stdout[-4000:],
+        "stderr": result.stderr[-4000:],
+    }
+    (output_dir / "astap_attempt.json").write_text(json.dumps(attempt, indent=2), encoding="utf-8")
+    if not solved:
+        raise RuntimeError(f"ASTAP did not solve {science_path.name}; see astap_attempt.json")
+    cache = output_dir / f"wcs_plate_solve_{science_path.stem}.fits"
+    fits.writeto(cache, fits.getdata(astap_input), solved_header, overwrite=True)
+    return cache
 
 
 def _gaia_catalog(wcs: WCS, shape: tuple[int, int], target_cfg: dict, output_dir: Path) -> pd.DataFrame:
@@ -338,11 +411,18 @@ def _time_and_lightcurve(table: pd.DataFrame, target_cfg: dict, header) -> tuple
     table["differential_flux"] = (table.target_flux / target_median) / ensemble
     ensemble_good = np.nanmedian(ensemble[provisional])
     rms_limit = np.nanmedian(table.background_rms) + 4 * _robust_sigma(table.background_rms.to_numpy())
-    table["accepted"] = (
-        provisional
-        & np.isfinite(table.differential_flux)
-        & (ensemble > 0.30 * ensemble_good)
-        & (table.background_rms < rms_limit)
+    table["reject_registration"] = table.registration_stars < 2
+    table["reject_target_flux"] = ~(table.target_flux > 0)
+    table["reject_target_snr"] = ~(table.target_snr > 3)
+    table["reject_nonfinite_flux"] = ~np.isfinite(table.differential_flux)
+    table["reject_comparison_ensemble"] = ~(ensemble > 0.30 * ensemble_good)
+    table["reject_background"] = ~(table.background_rms < rms_limit)
+    reject_columns = [column for column in table if column.startswith("reject_")]
+    table["accepted"] = ~table[reject_columns].any(axis=1)
+    table["rejection_reason"] = table[reject_columns].apply(
+        lambda row: ";".join(column.removeprefix("reject_") for column, rejected in row.items() if rejected)
+        or "accepted",
+        axis=1,
     )
     period = target_cfg["period_days"]
     epoch = target_cfg["epoch_bjd"]
@@ -399,14 +479,34 @@ def _time_and_lightcurve(table: pd.DataFrame, target_cfg: dict, header) -> tuple
         "comparison_stars_used": len(used_comp_columns),
         **coverage,
     }
-    summary["scientific_status"] = (
-        "promising_preliminary_transit"
-        if summary["pre_transit_points"] >= 5
+    summary["coverage_complete"] = (
+        summary["pre_transit_points"] >= 5
         and summary["in_transit_points"] >= 10
         and summary["post_transit_points"] >= 5
-        and summary["residual_scatter_percent"] < max(1.5, summary["fitted_depth_percent"])
-        else "insufficient_for_transit_claim"
     )
+    summary["precision_sufficient"] = (
+        summary["residual_scatter_percent"] < max(1.5, summary["published_depth_percent"])
+    )
+    depth_ratio = summary["fitted_depth_percent"] / max(summary["published_depth_percent"], 1e-6)
+    duration_ratio = summary["fitted_duration_hours"] / max(target_cfg["duration_hours"], 1e-6)
+    summary["depth_ratio_to_published"] = float(depth_ratio)
+    summary["duration_ratio_to_published"] = float(duration_ratio)
+    summary["depth_consistent"] = 0.5 <= depth_ratio <= 1.75
+    summary["duration_consistent"] = 0.65 <= duration_ratio <= 1.35
+    summary["timing_consistent"] = (
+        abs(summary["fitted_mid_offset_minutes"]) <= 0.25 * target_cfg["duration_hours"] * 60
+    )
+    consistent_fit = (
+        summary["depth_consistent"]
+        and summary["duration_consistent"]
+        and summary["timing_consistent"]
+    )
+    if summary["coverage_complete"] and summary["precision_sufficient"] and consistent_fit:
+        summary["scientific_status"] = "promising_preliminary_transit"
+    elif summary["coverage_complete"] and summary["precision_sufficient"]:
+        summary["scientific_status"] = "transit_like_but_parameters_inconsistent"
+    else:
+        summary["scientific_status"] = "insufficient_for_transit_claim"
     summary["fit_valid"] = summary["scientific_status"] == "promising_preliminary_transit"
     summary["fit_interpretation"] = (
         "preliminary_candidate"
@@ -480,31 +580,57 @@ def _plots(
     plt.close(fig)
 
 
-def run_target(root: str | Path, target: str, date: str, allow_plate_solve: bool = True) -> dict:
+def run_target(
+    root: str | Path,
+    target: str,
+    date: str,
+    allow_plate_solve: bool = True,
+    prefer_astap: bool = True,
+) -> dict:
     root = Path(root).resolve()
     cfg = json.loads((root / "config" / "targets.json").read_text(encoding="utf-8"))[target]
     paths = _paths(root, target, date)
     science_paths = sorted(paths.science_dir.glob("*.fits"))
-    dark, dark_paths = _master_dark(paths)
+    dark, dark_paths, dark_source_date = _master_dark(paths)
     reference_index, reference_scores = _select_reference(science_paths, dark)
     reference_path = science_paths[reference_index]
     header = fits.getheader(reference_path)
     plate_png = paths.output_dir / f"plate_solve_{reference_path.stem}.png"
     _make_plate_image(reference_path, dark, plate_png)
     wcs_path = paths.output_dir / f"wcs_{plate_png.stem}.fits"
+    plate_solution = "astrometry.net WCS cache"
+    flip_wcs_y = True
     if not wcs_path.exists():
-        if not allow_plate_solve:
-            raise FileNotFoundError(f"Missing cached WCS: {wcs_path}")
-        wcs_path = _plate_solve(plate_png, header, paths.output_dir)
+        astap_error = None
+        if prefer_astap:
+            try:
+                wcs_path = _plate_solve_astap(reference_path, dark, paths.output_dir)
+                plate_solution = "ASTAP local"
+                flip_wcs_y = False
+            except Exception as exc:
+                astap_error = repr(exc)
+        if not wcs_path.exists():
+            if not allow_plate_solve:
+                raise FileNotFoundError(f"Missing cached WCS; ASTAP result: {astap_error}")
+            wcs_path = _plate_solve(plate_png, header, paths.output_dir)
+            plate_solution = "Astrometry.net online"
+    else:
+        solution_metadata = paths.output_dir / "plate_solution.json"
+        if solution_metadata.exists():
+            metadata = json.loads(solution_metadata.read_text(encoding="utf-8"))
+            plate_solution = metadata.get("solver", plate_solution)
     wcs = WCS(fits.getheader(wcs_path))
     target_coord = SkyCoord(cfg["ra_deg"], cfg["dec_deg"], unit="deg")
     target_pixel = np.array(wcs.world_to_pixel(target_coord), dtype=float)
     shape = fits.getdata(reference_path).shape
-    target_pixel[1] = (shape[0] - 1) - target_pixel[1]
+    if flip_wcs_y:
+        target_pixel[1] = (shape[0] - 1) - target_pixel[1]
     if not (0 <= target_pixel[0] < shape[1] and 0 <= target_pixel[1] < shape[0]):
         raise RuntimeError(f"Target projects outside the solved frame at {target_pixel.tolist()}")
     _, reference_subtracted, reference_rms = _calibrated(reference_path, dark)
     catalog = _gaia_catalog(wcs, shape, cfg, paths.output_dir)
+    if not flip_wcs_y:
+        catalog["y_ref"] = (shape[0] - 1) - catalog["y_ref"]
     anchors, comparisons = _choose_stars(catalog, target_pixel, reference_subtracted, reference_rms, cfg)
     table = _track_and_measure(science_paths, dark, reference_index, anchors)
     table, summary = _time_and_lightcurve(table, cfg, header)
@@ -517,13 +643,22 @@ def run_target(root: str | Path, target: str, date: str, allow_plate_solve: bool
         "target_x_reference": float(target_pixel[0]),
         "target_y_reference": float(target_pixel[1]),
         "dark_frames": len(dark_paths),
-        "plate_solution": "astrometry.net WCS cache",
+        "dark_source_date": dark_source_date,
+        "same_date_dark": dark_source_date == date,
+        "plate_solution": plate_solution,
     })
     table.to_csv(paths.output_dir / "photometry.csv", index=False)
     reference_scores.to_csv(paths.output_dir / "frame_reference_scores.csv", index=False)
     comparisons.to_csv(paths.output_dir / "comparison_stars.csv", index=False)
     (paths.output_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-    web_points = table[["frame_index", "file_name", "hours_from_expected_mid", "detrended_flux", "transit_model", "accepted", "shift_x", "shift_y"]]
+    web_columns = [
+        "frame_index", "file_name", "mjd_utc", "bjd_tdb", "hours_from_expected_mid",
+        "detrended_flux", "transit_model", "accepted", "rejection_reason", "target_snr",
+        "background_rms", "registration_stars", "shift_x", "shift_y",
+    ]
+    web_points = table[web_columns].copy()
+    web_points["preview_path"] = web_points.frame_index.map(lambda value: f"timeline_frames/{value:04d}.webp")
+    (paths.output_dir / "web_timeline.json").write_text(web_points.to_json(orient="records"), encoding="utf-8")
     (paths.output_dir / "web_light_curve.json").write_text(web_points.to_json(orient="records"), encoding="utf-8")
     _plots(table, summary, reference_subtracted, target_pixel, comparisons, cfg, paths.output_dir)
     return summary

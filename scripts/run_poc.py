@@ -17,21 +17,44 @@ DEFAULT_RUNS = [
     ("WASP-2", "2026-08-11"),
     ("WASP-2", "2026-08-24"),
     ("CoRoT-2", "2026-08-09"),
+    ("CoRoT-2", "2026-08-16"),
+    ("TRES-3", "2026-08-10"),
+    ("Qatar-1", "2026-08-21"),
 ]
+
+
+def discover_runs() -> list[tuple[str, str]]:
+    runs = []
+    observations = ROOT / "database" / "observations"
+    for date_dir in sorted(path for path in observations.iterdir() if path.is_dir()):
+        for target_dir in sorted(path for path in date_dir.iterdir() if path.is_dir()):
+            runs.append((target_dir.name, date_dir.name))
+    return runs
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Build Hack4Dev exoplanet PoC outputs.")
-    parser.add_argument("--target", choices=["WASP-10", "WASP-2", "CoRoT-2"])
+    targets = sorted(json.loads((ROOT / "config" / "targets.json").read_text(encoding="utf-8")))
+    parser.add_argument("--target", choices=targets)
     parser.add_argument("--date")
     parser.add_argument("--cached-only", action="store_true", help="Do not submit a new Astrometry.net job.")
+    parser.add_argument("--all-sessions", action="store_true", help="Process every discovered science session.")
+    parser.add_argument("--no-astap", action="store_true", help="Skip the local ASTAP attempt for uncached fields.")
     args = parser.parse_args()
-    runs = [(args.target, args.date)] if args.target and args.date else DEFAULT_RUNS
+    if bool(args.target) != bool(args.date):
+        parser.error("--target and --date must be supplied together")
+    runs = discover_runs() if args.all_sessions else ([(args.target, args.date)] if args.target else DEFAULT_RUNS)
     failures = []
     for target, date in runs:
         print(f"\n=== {target} {date} ===", flush=True)
         try:
-            summary = run_target(ROOT, target, date, allow_plate_solve=not args.cached_only)
+            summary = run_target(
+                ROOT,
+                target,
+                date,
+                allow_plate_solve=not args.cached_only,
+                prefer_astap=not args.no_astap,
+            )
             print(json.dumps(summary, indent=2), flush=True)
         except Exception as exc:
             failures.append((target, date, repr(exc)))

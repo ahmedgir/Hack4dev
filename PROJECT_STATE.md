@@ -1,6 +1,6 @@
 # Hack4Dev Exoplanet Project State
 
-Last updated: 2026-09-15
+Last updated: 2026-09-16
 
 ## Current objective
 
@@ -130,28 +130,38 @@ The raw FITS data and reproducible pipeline remain in the project for scientific
 
 ## POC completion checkpoint
 
-The automated pipeline now processes four sessions end-to-end. The initial three were:
+The dataset audit reads all 1,741 FITS files, records SHA-256 fingerprints and pixel/header checks, and reports 1,741 successful reads. All 1,681 science images contain the required headers; 32 frames are more than half saturated.
+
+The automated pipeline now processes seven sessions end-to-end. The initial three were:
 
 - WASP-10 on 2026-08-08: 31/86 accepted; 4/27/0 pre/in/post points; 4.276% residual scatter.
 - WASP-2 on 2026-08-11: 22/78 accepted; 0/22/0 pre/in/post points; 0.855% residual scatter.
 - WASP-2 on 2026-08-24: 40/77 accepted; 0/9/31 pre/in/post points; 9.468% residual scatter.
 
-A fourth, deliberately selected session produced the first promising result:
+A deliberately selected session produced the first promising result:
 
 - CoRoT-2 on 2026-08-09: 73/87 accepted; 11/45/17 pre/in/post points; 1.690% residual scatter. The fitted depth is 3.184% versus 2.75% published, the fitted duration is 2.509 versus 2.267 hours, and the midpoint offset is about -4.2 minutes. Status: `promising_preliminary_transit`.
 
-The three WASP runs are explicitly labelled `insufficient_for_transit_claim`. CoRoT-2 is a promising recovery of a known transit, not an independent planet confirmation; it still needs a second-session check and independent EXOTIC validation.
+The result repeated in a second CoRoT-2 session on 2026-08-16: 85/86 accepted, 11/44/30 pre/in/post, 1.650% scatter, 2.883% fitted depth, and 6.7-minute midpoint offset. Both sessions are `promising_preliminary_transit`, but still need independent EXOTIC validation.
 
-The pipeline now exports verified-field images, readable light curves, quality-control plots, full per-frame photometry CSV, comparison-star CSV, session summary JSON, and compact web light-curve JSON. Cached plate solutions make reruns deterministic and avoid waiting for Astrometry.net.
+Two additional systems were processed:
+
+- TrES-3 on 2026-08-10: 34/70 accepted, no pre-transit baseline, 3.665% scatter; insufficient.
+- Qatar-1 on 2026-08-21: 72/74 accepted with complete coverage and 1.644% scatter, but its 5.40% fitted depth and 0.94-hour duration disagree with the published 2.14% and 1.66 hours. It is labelled `transit_like_but_parameters_inconsistent`, not promising.
+
+ASTAP was attempted on all 18 sessions lacking cached WCS and solved none. It is installed correctly, but is not suitable as the current production solver for these small undersampled frames. Astrometry.net solved the new TrES-3, CoRoT-2, and Qatar-1 fields and their WCS is cached.
+
+The pipeline now exports verified-field images, readable light curves, quality-control plots, full per-frame photometry CSV, comparison-star CSV, session summary JSON, and `web_timeline.json`. The Timeline contains every accepted and rejected frame with rejection reason and preview path. A tested generator produced 87/87 CoRoT-2 WebP previews.
 
 The executed notebook `notebooks/01_transit_pipeline_poc.ipynb` presents these results and includes an interactive FITS-frame slider synchronized with the light curve.
 
 ## Immediate next decision gate
 
-The technical POC is proven, but the scientific signal is not. The next phase has two tracks:
+The technical and educational POC is sufficient to begin website design. The remaining scientific gate is:
 
-1. Slow down and document the complete Discovery Webapp story, every tool, every input/output, and the explanation for the rest of the team.
-2. Later, batch-screen the remaining sessions for complete transit coverage and lower scatter, then validate the best candidate independently with EXOTIC before making any detection claim.
+1. Validate both CoRoT-2 sessions independently with EXOTIC before strengthening any scientific claim.
+2. Continue batch-solving the remaining sessions as evidence coverage, not as a blocker for the website.
+3. Build the website around the complete CoRoT-2 Timeline plus honest failure cases from WASP, TrES-3, and Qatar-1.
 
 ## First user observation
 

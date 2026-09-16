@@ -11,6 +11,13 @@
   "pre_transit_points": 11,
   "in_transit_points": 45,
   "post_transit_points": 17,
+  "coverage_complete": true,
+  "precision_sufficient": true,
+  "depth_ratio_to_published": 1.1577251289051516,
+  "duration_ratio_to_published": 1.1068728565561807,
+  "depth_consistent": true,
+  "duration_consistent": true,
+  "timing_consistent": true,
   "scientific_status": "promising_preliminary_transit",
   "fit_valid": true,
   "fit_interpretation": "preliminary_candidate",
@@ -22,5 +29,7 @@
   "target_x_reference": 160.72412828692705,
   "target_y_reference": 123.11386272125219,
   "dark_frames": 2,
+  "dark_source_date": "2026-08-09",
+  "same_date_dark": true,
   "plate_solution": "astrometry.net WCS cache"
 }
