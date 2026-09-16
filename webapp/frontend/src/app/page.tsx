@@ -22,7 +22,7 @@ export default function Home() {
             <p>An evidence-first journey from raw telescope images to a measurable dip in the light of a distant star.</p>
             <div className="hero-actions">
               <Link className="nasa-button" href="/explorer">Explore the observation <span aria-hidden="true">→</span></Link>
-              <Link className="text-link light" href="/methodology">Read the methodology</Link>
+              <Link className="text-link light" href="/systems">View all target systems</Link>
             </div>
           </div>
         </div>

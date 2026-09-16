@@ -13,6 +13,7 @@ export function SiteHeader() {
         </Link>
         <nav className="primary-nav" aria-label="Primary navigation">
           <Link href="/">Overview</Link>
+          <Link href="/systems">Systems</Link>
           <Link href="/explorer">Explore data</Link>
           <Link href="/methodology">Methodology</Link>
           <Link href="/about">About</Link>
@@ -21,10 +22,10 @@ export function SiteHeader() {
       </div>
       <nav className="section-nav" aria-label="Portal sections">
         <strong>Transit Explorer</strong>
-        <Link href="/">Discovery tool</Link>
+        <Link href="/systems">Target catalog</Link>
         <Link href="/methodology">From FITS to evidence</Link>
         <Link href="/explorer">CoRoT-2 b</Link>
-        <span>More systems coming soon</span>
+        <Link href="/sources">Sources &amp; credits</Link>
       </nav>
     </header>
   );

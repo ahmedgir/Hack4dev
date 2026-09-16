@@ -8,8 +8,10 @@ export function SiteFooter() {
         <div><strong>Exoplanet Data Portal</strong><small>Discovery Tool · Challenge E</small></div>
       </div>
       <nav className="footer-links" aria-label="Footer navigation">
+        <Link href="/systems">Systems</Link>
         <Link href="/explorer">Explorer</Link>
         <Link href="/methodology">Methodology</Link>
+        <Link href="/sources">Sources</Link>
         <Link href="/about">About</Link>
       </nav>
       <p>Real observations. Traceable evidence. Honest limits.</p>
