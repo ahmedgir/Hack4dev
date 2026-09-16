@@ -41,10 +41,10 @@ export default function AboutPage() {
 
       <section className="scope-section">
         <p className="section-label">CURRENT SCOPE</p>
-        <h2>One complete system now. A repeatable structure for the rest.</h2>
-        <p>CoRoT-2 b is the first fully published case in the portal. Additional systems can be added through the same catalog structure as their pipeline products are completed and reviewed.</p>
+        <h2>Eight targets, seven reviewed sessions, one shared evidence contract.</h2>
+        <p>Five systems currently have pipeline-complete sessions in the portal; three remain visibly marked as awaiting analysis. CoRoT-2 b is the strongest case, while the incomplete and inconsistent results show why a plausible curve alone is not enough.</p>
         <div className="scope-links">
-          <Link className="nasa-button" href="/explorer">Explore the first system <span aria-hidden="true">→</span></Link>
+          <Link className="nasa-button" href="/systems/corot-2">Explore the first system <span aria-hidden="true">→</span></Link>
           <Link className="text-link" href="/methodology">Review the scientific stack</Link>
         </div>
       </section>

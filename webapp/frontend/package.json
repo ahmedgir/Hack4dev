@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "validate:data": "node scripts/validate-content.mjs",
+    "import:session": "node scripts/import-session.mjs",
     "prebuild": "pnpm validate:data",
     "build": "next build",
     "start": "next start",

@@ -16,6 +16,15 @@ for (const system of systems) {
   if (!system.slug || !system.starName || !system.planetName) {
     errors.push("Every system needs slug, starName, and planetName.");
   }
+  if (!system.catalogImagePath || !system.sourceUrl || !system.shortDescription) {
+    errors.push(`${system.slug}: missing catalog image, source URL, or description.`);
+  } else {
+    try {
+      await access(path.join(root, "public", system.catalogImagePath.replace(/^\//, "")));
+    } catch {
+      errors.push(`${system.slug}: missing catalog image at ${system.catalogImagePath}`);
+    }
+  }
   for (const session of system.sessions ?? []) {
     if (!allowedStatuses.has(session.status)) {
       errors.push(`${session.id}: unknown scientific status ${session.status}`);
@@ -31,6 +40,19 @@ for (const system of systems) {
       } catch {
         errors.push(`${session.id}: missing ${key} at ${value}`);
       }
+    }
+    try {
+      const summary = JSON.parse(
+        await readFile(path.join(root, "public", session.summaryPath.replace(/^\//, "")), "utf8"),
+      );
+      if (summary.scientific_status !== session.status) {
+        errors.push(`${session.id}: catalog status does not match summary.json.`);
+      }
+      if (summary.total_frames !== session.totalFrames || summary.accepted_frames !== session.acceptedFrames) {
+        errors.push(`${session.id}: frame counts do not match summary.json.`);
+      }
+    } catch {
+      // The missing-path error above is more actionable.
     }
   }
 }

@@ -7,9 +7,9 @@
 ### إلزامي
 
 1. `summary.json`
-2. `light-curve.json`
+2. `web_light_curve.json`
 3. صورة حقل موثقة تحدد النجم المضيف، ويفضل WebP أو PNG.
-4. سجل داخل `webapp/frontend/src/data/catalog.json`.
+4. سجل النظام الأساسي داخل `webapp/frontend/src/data/catalog.json` (مرة واحدة فقط لكل نظام).
 
 ### اختياري حاليًا
 
@@ -59,6 +59,19 @@ scientific_status أو القيم العلمية. إذا كانت timeline_frame
 توجد اتركها اختيارية ولا تنشئ صورًا وهمية. شغّل pnpm validate:data ثم pnpm build.
 لا تعدّل تصميم المكونات إلا إذا تغيّر عقد البيانات نفسه.
 ```
+
+## الطريقة الأسرع الموحّدة
+
+إذا كان النظام موجودًا أصلًا في `catalog.json`، لا تنسخ الملفات ولا تكتب سجل الجلسة يدويًا. من داخل `webapp/frontend` شغّل:
+
+```bash
+pnpm import:session --slug=wasp-10 --output=../../outputs/wasp_10/2026-08-08
+pnpm build
+```
+
+الأمر يقرأ القيم العلمية حرفيًا من `summary.json`، وينسخ المنحنى وصورة الحقل إلى `public/`، ثم يضيف الجلسة أو يحدّثها باستخدام `slug + date`. صفحات `/systems/<slug>` والبطاقات تُبنى تلقائيًا من نفس `catalog.json`، لذلك لا ننسخ مكونات React لكل كوكب.
+
+لإضافة نظام جديد كليًا، أضف مرة واحدة ملفه التعريفي المنشور إلى `catalog.json` مع `sessions: []`، ثم استخدم الأمر نفسه لكل جلسة مكتملة. لا تضف نتائج تحليل يدويًا ولا تغيّر `scientific_status`.
 
 ## عندما نحتاج صورًا جديدة من الـpipeline
 

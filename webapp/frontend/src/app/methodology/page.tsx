@@ -69,7 +69,7 @@ export default function MethodologyPage() {
 
       <section className="page-cta">
         <div><p className="section-label">SEE THE OUTPUT</p><h2>Now inspect the observation itself.</h2></div>
-        <Link className="nasa-button" href="/explorer">Open CoRoT-2 b <span aria-hidden="true">→</span></Link>
+        <Link className="nasa-button" href="/systems/corot-2">Open CoRoT-2 b <span aria-hidden="true">→</span></Link>
       </section>
       <SiteFooter />
     </main>

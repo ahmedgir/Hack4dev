@@ -9,7 +9,7 @@ export function SiteFooter() {
       </div>
       <nav className="footer-links" aria-label="Footer navigation">
         <Link href="/systems">Systems</Link>
-        <Link href="/explorer">Explorer</Link>
+        <Link href="/systems/corot-2">Explorer</Link>
         <Link href="/methodology">Methodology</Link>
         <Link href="/sources">Sources</Link>
         <Link href="/about">About</Link>

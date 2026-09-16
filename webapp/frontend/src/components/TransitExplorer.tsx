@@ -24,7 +24,7 @@ function statusLabel(accepted: boolean) {
   return accepted ? "Accepted measurement" : "Rejected frame";
 }
 
-export function TransitExplorer({ session }: { session: SessionRecord }) {
+export function TransitExplorer({ session, starName }: { session: SessionRecord; starName: string }) {
   const [points, setPoints] = useState<LightPoint[]>([]);
   const [activeIndex, setActiveIndex] = useState(session.referenceFrameIndex ?? Math.floor(session.totalFrames / 2));
   const [loadError, setLoadError] = useState(false);
@@ -71,7 +71,7 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
           <h2 id="explorer-title">Follow the light, frame by frame.</h2>
           <p>Every point is a measurement from a real telescope image. Move through the timeline to inspect its context.</p>
         </div>
-        <div className="session-stamp">CoRoT-2 · {session.date}</div>
+        <div className="session-stamp">{starName} · {session.date}</div>
       </div>
 
       <div className="explorer-grid">
@@ -88,7 +88,7 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
                 src={activeImagePath}
                 alt={session.timelineFramesPath
                   ? `Observation frame ${activeIndex + 1}`
-                  : "CoRoT-2 field with the host and Gaia comparison stars marked"}
+                  : `${starName} field with the host and Gaia comparison stars marked`}
               />
             ) : (
               <div className="missing-asset">No field image is available for this session.</div>

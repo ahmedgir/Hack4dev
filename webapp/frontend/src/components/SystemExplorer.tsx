@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TransitExplorer } from "@/components/TransitExplorer";
 import type { SessionRecord } from "@/data/systems";
 
-export function SystemExplorer({ sessions }: { sessions: SessionRecord[] }) {
+export function SystemExplorer({ sessions, starName }: { sessions: SessionRecord[]; starName: string }) {
   const [selected, setSelected] = useState(0);
   const session = sessions[selected];
 
@@ -13,7 +13,7 @@ export function SystemExplorer({ sessions }: { sessions: SessionRecord[] }) {
       <div className="session-switcher">
         <div>
           <p className="section-label">OBSERVING NIGHTS</p>
-          <h2>Two nights, one repeatable signal.</h2>
+          <h2>{sessions.length > 1 ? `${sessions.length} observing sessions.` : "One reviewed observing session."}</h2>
         </div>
         <div className="session-tabs" role="tablist" aria-label="Choose observing night">
           {sessions.map((item, index) => (
@@ -31,7 +31,7 @@ export function SystemExplorer({ sessions }: { sessions: SessionRecord[] }) {
           ))}
         </div>
       </div>
-      <TransitExplorer key={session.id} session={session} />
+      <TransitExplorer key={session.id} session={session} starName={starName} />
     </>
   );
 }

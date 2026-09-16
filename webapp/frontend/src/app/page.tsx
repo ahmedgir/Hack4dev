@@ -21,7 +21,7 @@ export default function Home() {
             <h1>Exoplanet<br />Transit Explorer</h1>
             <p>An evidence-first journey from raw telescope images to a measurable dip in the light of a distant star.</p>
             <div className="hero-actions">
-              <Link className="nasa-button" href="/explorer">Explore the observation <span aria-hidden="true">→</span></Link>
+              <Link className="nasa-button" href="/systems/corot-2">Explore the observation <span aria-hidden="true">→</span></Link>
               <Link className="text-link light" href="/systems">View all target systems</Link>
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function Home() {
             <div><dt>Published depth</dt><dd>{featuredSystem.publishedDepthPercent}%</dd></div>
             <div><dt>Accepted frames</dt><dd>{acceptedFrames} / {totalFrames}</dd></div>
           </dl>
-          <Link href="/explorer" className="nasa-button">Open the observing session <span aria-hidden="true">→</span></Link>
+          <Link href="/systems/corot-2" className="nasa-button">Open the observing session <span aria-hidden="true">→</span></Link>
         </aside>
       </section>
 

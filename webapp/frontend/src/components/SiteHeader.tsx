@@ -14,7 +14,7 @@ export function SiteHeader() {
         <nav className="primary-nav" aria-label="Primary navigation">
           <Link href="/">Overview</Link>
           <Link href="/systems">Systems</Link>
-          <Link href="/explorer">Explore data</Link>
+          <Link href="/systems/corot-2">Explore data</Link>
           <Link href="/methodology">Methodology</Link>
           <Link href="/about">About</Link>
         </nav>
@@ -24,7 +24,7 @@ export function SiteHeader() {
         <strong>Transit Explorer</strong>
         <Link href="/systems">Target catalog</Link>
         <Link href="/methodology">From FITS to evidence</Link>
-        <Link href="/explorer">CoRoT-2 b</Link>
+        <Link href="/systems/corot-2">CoRoT-2 b</Link>
         <Link href="/sources">Sources &amp; credits</Link>
       </nav>
     </header>

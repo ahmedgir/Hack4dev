@@ -1,42 +1,112 @@
 [
   {
-    "slug": "corot-2",
-    "starName": "CoRoT-2",
-    "planetName": "CoRoT-2 b",
-    "discoverySurvey": "CoRoT",
-    "periodDays": 1.7429935,
-    "publishedDepthPercent": 2.75,
-    "durationHours": 2.26704,
-    "raDeg": 291.7770457,
-    "decDeg": 1.3836634,
-    "shortDescription": "A known hot Jupiter crossing its host star every 1.74 days. We recovered its transit signal at preliminary confidence.",
+    "slug": "corot-2", "starName": "CoRoT-2", "planetName": "CoRoT-2 b", "discoverySurvey": "CoRoT",
+    "periodDays": 1.7429935, "publishedDepthPercent": 2.75, "durationHours": 2.26704,
+    "raDeg": 291.7770457, "decDeg": 1.3836634, "gaiaMagnitude": 12.2489,
+    "shortDescription": "A known hot Jupiter crossing its host star every 1.74 days. Two nights produced mutually consistent preliminary recoveries.",
+    "catalogImagePath": "/media/catalog/corot-2/artist-concept.jpg", "imageKind": "artist_concept",
+    "imageLabel": "NASA artist’s concept of the CoRoT-2 system", "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/corot-2-b/",
     "sessions": [
       {
-        "id": "corot-2-2026-08-09",
-        "date": "2026-08-09",
-        "totalFrames": 87,
-        "acceptedFrames": 73,
-        "referenceFrameIndex": 43,
-        "measuredDepthPercent": 3.184,
-        "residualScatterPercent": 1.69,
-        "status": "promising_preliminary_transit",
-        "summaryPath": "/data/systems/corot-2/2026-08-09/summary.json",
-        "lightCurvePath": "/data/systems/corot-2/2026-08-09/light-curve.json",
-        "fieldImagePath": "/media/systems/corot-2/2026-08-09/verified-field.png"
+        "id": "corot-2-2026-08-09", "date": "2026-08-09", "totalFrames": 87, "acceptedFrames": 73, "referenceFrameIndex": 43,
+        "measuredDepthPercent": 3.1837441045, "measuredDurationHours": 2.5093250407, "midpointOffsetMinutes": -4.1918, "residualScatterPercent": 1.6902110859,
+        "preTransitPoints": 11, "inTransitPoints": 45, "postTransitPoints": 17, "coverageComplete": true, "fitValid": true,
+        "status": "promising_preliminary_transit", "summaryPath": "/data/systems/corot-2/2026-08-09/summary.json",
+        "lightCurvePath": "/data/systems/corot-2/2026-08-09/light-curve.json", "fieldImagePath": "/media/systems/corot-2/2026-08-09/verified-field.png"
       },
       {
-        "id": "corot-2-2026-08-16",
-        "date": "2026-08-16",
-        "totalFrames": 86,
-        "acceptedFrames": 85,
-        "referenceFrameIndex": 51,
-        "measuredDepthPercent": 2.883,
-        "residualScatterPercent": 1.65,
-        "status": "promising_preliminary_transit",
-        "summaryPath": "/data/systems/corot-2/2026-08-16/summary.json",
-        "lightCurvePath": "/data/systems/corot-2/2026-08-16/light-curve.json",
-        "fieldImagePath": "/media/systems/corot-2/2026-08-16/verified-field.png"
+        "id": "corot-2-2026-08-16", "date": "2026-08-16", "totalFrames": 86, "acceptedFrames": 85, "referenceFrameIndex": 51,
+        "measuredDepthPercent": 2.8833306399, "measuredDurationHours": 1.9644367506, "midpointOffsetMinutes": 6.6994, "residualScatterPercent": 1.649534807,
+        "preTransitPoints": 11, "inTransitPoints": 44, "postTransitPoints": 30, "coverageComplete": true, "fitValid": true,
+        "status": "promising_preliminary_transit", "summaryPath": "/data/systems/corot-2/2026-08-16/summary.json",
+        "lightCurvePath": "/data/systems/corot-2/2026-08-16/light-curve.json", "fieldImagePath": "/media/systems/corot-2/2026-08-16/verified-field.png"
       }
     ]
+  },
+  {
+    "slug": "wasp-10", "starName": "WASP-10", "planetName": "WASP-10 b", "discoverySurvey": "WASP",
+    "periodDays": 3.0927616, "publishedDepthPercent": 2.525, "durationHours": 2.2271, "raDeg": 348.9930457, "decDeg": 31.4627508, "gaiaMagnitude": 12.1739,
+    "shortDescription": "A deep-transit hot Jupiter whose available sequence lacks the post-transit baseline needed for a reliable recovery.",
+    "catalogImagePath": "/media/catalog/wasp-10/verified-field.png", "imageKind": "verified_field",
+    "imageLabel": "Processed MicroObservatory field; marker identifies the WASP-10 host star", "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/wasp-10-b/",
+    "sessions": [{
+      "id": "wasp-10-2026-08-08", "date": "2026-08-08", "totalFrames": 86, "acceptedFrames": 31, "referenceFrameIndex": 60,
+      "measuredDepthPercent": 0.4457337207, "measuredDurationHours": 1.6899465016, "midpointOffsetMinutes": 21.3348, "residualScatterPercent": 4.2761519387,
+      "preTransitPoints": 4, "inTransitPoints": 27, "postTransitPoints": 0, "coverageComplete": false, "fitValid": false,
+      "status": "insufficient_for_transit_claim", "summaryPath": "/data/systems/wasp-10/2026-08-08/summary.json",
+      "lightCurvePath": "/data/systems/wasp-10/2026-08-08/light-curve.json", "fieldImagePath": "/media/systems/wasp-10/2026-08-08/verified-field.png"
+    }]
+  },
+  {
+    "slug": "wasp-2", "starName": "WASP-2", "planetName": "WASP-2 b", "discoverySurvey": "WASP",
+    "periodDays": 2.152175, "publishedDepthPercent": 1.646, "durationHours": 1.78824, "raDeg": 307.7255587, "decDeg": 6.4293305, "gaiaMagnitude": 11.5638,
+    "shortDescription": "Two sessions reveal different limitations: one has no out-of-transit baseline and the other has excessive scatter.",
+    "catalogImagePath": "/media/catalog/wasp-2/verified-field.png", "imageKind": "verified_field",
+    "imageLabel": "Processed MicroObservatory field; marker identifies the WASP-2 host star", "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/wasp-2-b/",
+    "sessions": [
+      {
+        "id": "wasp-2-2026-08-11", "date": "2026-08-11", "totalFrames": 78, "acceptedFrames": 22, "referenceFrameIndex": 1,
+        "measuredDepthPercent": 0.000128244, "measuredDurationHours": 1.78824, "midpointOffsetMinutes": 0, "residualScatterPercent": 0.8546589731,
+        "preTransitPoints": 0, "inTransitPoints": 22, "postTransitPoints": 0, "coverageComplete": false, "fitValid": false,
+        "status": "insufficient_for_transit_claim", "summaryPath": "/data/systems/wasp-2/2026-08-11/summary.json",
+        "lightCurvePath": "/data/systems/wasp-2/2026-08-11/light-curve.json", "fieldImagePath": "/media/systems/wasp-2/2026-08-11/verified-field.png"
+      },
+      {
+        "id": "wasp-2-2026-08-24", "date": "2026-08-24", "totalFrames": 77, "acceptedFrames": 40, "referenceFrameIndex": 67,
+        "measuredDepthPercent": 5.6510090108, "measuredDurationHours": 1.78824, "midpointOffsetMinutes": 0, "residualScatterPercent": 9.4681508849,
+        "preTransitPoints": 0, "inTransitPoints": 9, "postTransitPoints": 31, "coverageComplete": false, "fitValid": false,
+        "status": "insufficient_for_transit_claim", "summaryPath": "/data/systems/wasp-2/2026-08-24/summary.json",
+        "lightCurvePath": "/data/systems/wasp-2/2026-08-24/light-curve.json", "fieldImagePath": "/media/systems/wasp-2/2026-08-24/verified-field.png"
+      }
+    ]
+  },
+  {
+    "slug": "qatar-1", "starName": "Qatar-1", "planetName": "Qatar-1 b", "discoverySurvey": "Qatar",
+    "periodDays": 1.4200242, "publishedDepthPercent": 2.14, "durationHours": 1.66104, "raDeg": 303.3818697, "decDeg": 65.1623313, "gaiaMagnitude": 12.4764,
+    "shortDescription": "A complete and comparatively precise sequence with a transit-like dip whose depth and duration disagree with published values.",
+    "catalogImagePath": "/media/catalog/qatar-1/verified-field.png", "imageKind": "verified_field",
+    "imageLabel": "Processed MicroObservatory field; marker identifies the Qatar-1 host star", "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/qatar-1-b/",
+    "sessions": [{
+      "id": "qatar-1-2026-08-21", "date": "2026-08-21", "totalFrames": 74, "acceptedFrames": 72, "referenceFrameIndex": 72,
+      "measuredDepthPercent": 5.4015896679, "measuredDurationHours": 0.9361571644, "midpointOffsetMinutes": 3.1946, "residualScatterPercent": 1.6444160351,
+      "preTransitPoints": 18, "inTransitPoints": 33, "postTransitPoints": 21, "coverageComplete": true, "fitValid": false,
+      "status": "transit_like_but_parameters_inconsistent", "summaryPath": "/data/systems/qatar-1/2026-08-21/summary.json",
+      "lightCurvePath": "/data/systems/qatar-1/2026-08-21/light-curve.json", "fieldImagePath": "/media/systems/qatar-1/2026-08-21/verified-field.png"
+    }]
+  },
+  {
+    "slug": "tres-3", "starName": "TrES-3", "planetName": "TrES-3 b", "discoverySurvey": "TrES",
+    "periodDays": 1.30618581, "publishedDepthPercent": 2.739, "durationHours": 1.4177746, "raDeg": 268.0291106, "decDeg": 37.5463268, "gaiaMagnitude": 12.1995,
+    "shortDescription": "The available observation has no pre-transit baseline and insufficient precision for a transit claim.",
+    "catalogImagePath": "/media/catalog/tres-3/verified-field.png", "imageKind": "verified_field",
+    "imageLabel": "Processed MicroObservatory field; marker identifies the TrES-3 host star", "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/tres-3-b/",
+    "sessions": [{
+      "id": "tres-3-2026-08-10", "date": "2026-08-10", "totalFrames": 70, "acceptedFrames": 34, "referenceFrameIndex": 46,
+      "measuredDepthPercent": 9.9999996216, "measuredDurationHours": 1.780071228, "midpointOffsetMinutes": -33.8623, "residualScatterPercent": 3.6645601314,
+      "preTransitPoints": 0, "inTransitPoints": 22, "postTransitPoints": 12, "coverageComplete": false, "fitValid": false,
+      "status": "insufficient_for_transit_claim", "summaryPath": "/data/systems/tres-3/2026-08-10/summary.json",
+      "lightCurvePath": "/data/systems/tres-3/2026-08-10/light-curve.json", "fieldImagePath": "/media/systems/tres-3/2026-08-10/verified-field.png"
+    }]
+  },
+  {
+    "slug": "tres-1", "starName": "TrES-1", "planetName": "TrES-1 b", "discoverySurvey": "TrES",
+    "periodDays": 3.03007, "publishedDepthPercent": 1.8, "durationHours": 2.508, "raDeg": 286.0408755, "decDeg": 36.632536, "gaiaMagnitude": 11.5565,
+    "shortDescription": "The target is configured, but no pipeline-complete observing session has been reviewed for publication yet.",
+    "catalogImagePath": "/media/catalog/concepts/hot-jupiter.jpg", "imageKind": "representative_concept",
+    "imageLabel": "Representative NASA hot-Jupiter concept — not an image of TrES-1 b", "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/tres-1-b/", "sessions": []
+  },
+  {
+    "slug": "tres-5", "starName": "TrES-5", "planetName": "TrES-5 b", "discoverySurvey": "TrES",
+    "periodDays": 1.48224686, "publishedDepthPercent": 2.192, "durationHours": 1.595, "raDeg": 305.2219454, "decDeg": 59.4489033, "gaiaMagnitude": 13.4599,
+    "shortDescription": "The target is configured, but no pipeline-complete observing session has been reviewed for publication yet.",
+    "catalogImagePath": "/media/catalog/concepts/hot-jupiter.jpg", "imageKind": "representative_concept",
+    "imageLabel": "Representative NASA hot-Jupiter concept — not an image of TrES-5 b", "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/tres-5-b/", "sessions": []
+  },
+  {
+    "slug": "hat-p-10", "starName": "HAT-P-10", "planetName": "HAT-P-10 b", "alias": "WASP-11 b", "discoverySurvey": "HATNet / WASP",
+    "periodDays": 3.72247, "publishedDepthPercent": 1.6, "durationHours": 2.556, "raDeg": 47.3689472, "decDeg": 30.6733817, "gaiaMagnitude": 11.5535,
+    "shortDescription": "The target is configured, but no pipeline-complete observing session has been reviewed for publication yet.",
+    "catalogImagePath": "/media/catalog/concepts/hot-jupiter.jpg", "imageKind": "representative_concept",
+    "imageLabel": "Representative NASA hot-Jupiter concept — not an image of HAT-P-10 b", "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/wasp-11-b/", "sessions": []
   }
 ]

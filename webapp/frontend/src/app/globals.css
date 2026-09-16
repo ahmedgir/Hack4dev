@@ -224,6 +224,17 @@ footer p { color: #a9abb0; font-size: 13px; }
 .reuse-note { padding: 72px max(3.2vw, calc((100vw - 1280px) / 2)); background: #111318; color: white; }
 .reuse-note > p:last-child { max-width: 850px; color: #c9cbd0; line-height: 1.85; }
 
+.system-detail-hero > img { object-position: center 45%; }
+.system-profile { width: min(1280px, 93.6vw); margin: 0 auto; padding: 72px 0; display: grid; grid-template-columns: 1fr 1.15fr; gap: 80px; align-items: start; }
+.system-profile h2, .awaiting-evidence h2 { margin: 0; font-size: clamp(34px, 4vw, 54px); line-height: 1.12; letter-spacing: -.04em; }
+.system-profile > div > p:last-child, .awaiting-evidence > p:not(.section-label) { color: var(--body); line-height: 1.8; }
+.system-profile dl { margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid #999; border-left: 1px solid var(--line); }
+.system-profile dl div { min-width: 0; padding: 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.system-profile dt { margin-bottom: 8px; color: #71747a; font: 9px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.system-profile dd { margin: 0; overflow-wrap: anywhere; font: 700 13px/1.45 var(--mono); }
+.awaiting-evidence { padding: 80px max(3.2vw, calc((100vw - 1280px) / 2)); background: var(--soft); border-top: 1px solid var(--line); }
+.awaiting-evidence > p:not(.section-label) { max-width: 760px; }
+
 @media (max-width: 960px) {
   .masthead { grid-template-columns: 1fr 32px; }
   .primary-nav { display: none; }
@@ -235,7 +246,7 @@ footer p { color: #a9abb0; font-size: 13px; }
   .verdict { grid-template-columns: 1fr; }
   .session-switcher { align-items: flex-start; flex-direction: column; }
   .validation-heading { grid-template-columns: 1fr; gap: 28px; }
-  .methodology-intro, .transparency-band, .about-grid, .catalog-intro { grid-template-columns: 1fr; gap: 42px; }
+  .methodology-intro, .transparency-band, .about-grid, .catalog-intro, .system-profile { grid-template-columns: 1fr; gap: 42px; }
   .tool-grid { grid-template-columns: 1fr; }
   .page-cta { align-items: flex-start; flex-direction: column; }
   .system-grid { grid-template-columns: 1fr; }
