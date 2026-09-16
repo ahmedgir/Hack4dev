@@ -28,7 +28,7 @@ export type SystemRecord = {
   durationHours: number;
   raDeg: number;
   decDeg: number;
-  shortDescriptionAr: string;
+  shortDescription: string;
   sessions: SessionRecord[];
 };
 

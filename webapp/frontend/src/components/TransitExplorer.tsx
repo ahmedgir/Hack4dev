@@ -21,12 +21,13 @@ const HEIGHT = 280;
 const PAD = { top: 24, right: 22, bottom: 38, left: 54 };
 
 function statusLabel(accepted: boolean) {
-  return accepted ? "قياس مقبول" : "إطار مرفوض";
+  return accepted ? "Accepted measurement" : "Rejected frame";
 }
 
 export function TransitExplorer({ session }: { session: SessionRecord }) {
   const [points, setPoints] = useState<LightPoint[]>([]);
   const [activeIndex, setActiveIndex] = useState(43);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
     fetch(session.lightCurvePath)
@@ -34,7 +35,8 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
         if (!response.ok) throw new Error("Could not load light curve");
         return response.json();
       })
-      .then((data: LightPoint[]) => setPoints(data));
+      .then((data: LightPoint[]) => setPoints(data))
+      .catch(() => setLoadError(true));
   }, [session.lightCurvePath]);
 
   const chart = useMemo(() => {
@@ -66,8 +68,8 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
       <div className="section-kicker">LIVE EVIDENCE / 01</div>
       <div className="section-heading-row">
         <div>
-          <h2 id="explorer-title">اتبع الضوء، إطارًا بعد إطار</h2>
-          <p>كل نقطة هي قياس حقيقي من صورة تلسكوبية. حرّك المؤشر لترى سياقها.</p>
+          <h2 id="explorer-title">Follow the light, frame by frame.</h2>
+          <p>Every point is a measurement from a real telescope image. Move through the timeline to inspect its context.</p>
         </div>
         <div className="session-stamp" dir="ltr">CoRoT-2 · 2026-08-09</div>
       </div>
@@ -77,7 +79,7 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
           <div className="panel-label-row">
             <span>REFERENCE FIELD</span>
             <span className={active?.accepted === false ? "state rejected" : "state accepted"}>
-              {active ? statusLabel(active.accepted) : "تحميل البيانات"}
+              {active ? statusLabel(active.accepted) : loadError ? "Data unavailable" : "Loading data"}
             </span>
           </div>
           <div className="field-image-wrap">
@@ -85,11 +87,11 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
               <img
                 src={activeImagePath}
                 alt={session.timelineFramesPath
-                  ? `إطار الرصد رقم ${activeIndex + 1}`
-                  : "حقل CoRoT-2 مع تحديد النجم المضيف ونجوم المقارنة"}
+                  ? `Observation frame ${activeIndex + 1}`
+                  : "CoRoT-2 field with the host and Gaia comparison stars marked"}
               />
             ) : (
-              <div className="missing-asset">لا توجد صورة حقل لهذه الجلسة بعد.</div>
+              <div className="missing-asset">No field image is available for this session.</div>
             )}
           </div>
           <div className="frame-readout" dir="ltr">
@@ -105,7 +107,7 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
           </div>
           <div className="chart-wrap" dir="ltr">
             {chart ? (
-              <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img" aria-label="منحنى السطوع النسبي عبر زمن العبور">
+              <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} role="img" aria-label="Relative stellar brightness across the expected transit window">
                 {[0.92, 0.96, 1, 1.04].map((tick) => (
                   <g key={tick}>
                     <line x1={PAD.left} x2={WIDTH - PAD.right} y1={chart.y(tick)} y2={chart.y(tick)} className="grid-line" />
@@ -128,7 +130,7 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
                 <text x={15} y={HEIGHT / 2} className="axis-title" textAnchor="middle" transform={`rotate(-90 15 ${HEIGHT / 2})`}>Relative flux</text>
               </svg>
             ) : (
-              <div className="chart-loading">جاري تحميل القياسات…</div>
+              <div className="chart-loading">{loadError ? "The measurements could not be loaded." : "Loading measurements…"}</div>
             )}
           </div>
 
@@ -144,7 +146,7 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
             max={Math.max(0, session.totalFrames - 1)}
             value={activeIndex}
             onChange={(event) => setActiveIndex(Number(event.target.value))}
-            aria-label="اختيار إطار الرصد"
+            aria-label="Select observation frame"
           />
 
           <div className="metrics-strip">
@@ -153,7 +155,7 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
             <div><span>REFERENCE STARS</span><strong>{active?.registration_stars ?? "—"}</strong></div>
           </div>
           {active && !active.accepted && (
-            <p className="rejection-note">سبب الرفض: {active.rejection_reason.replaceAll(";", " · ")}</p>
+            <p className="rejection-note">Rejection reason: {active.rejection_reason.replaceAll(";", " · ")}</p>
           )}
         </div>
       </div>

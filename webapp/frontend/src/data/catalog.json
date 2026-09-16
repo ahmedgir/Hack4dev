@@ -9,7 +9,7 @@
     "durationHours": 2.26704,
     "raDeg": 291.7770457,
     "decDeg": 1.3836634,
-    "shortDescriptionAr": "عملاق غازي معروف يمر أمام نجمه كل 1.74 يوم. استعدنا إشارة عبوره بصورة أولية في ليلتين مستقلتين.",
+    "shortDescription": "A known hot Jupiter crossing its host star every 1.74 days. We recovered its transit signal at preliminary confidence.",
     "sessions": [
       {
         "id": "corot-2-2026-08-09",
