@@ -156,6 +156,22 @@ It uses **ipywidgets 8.1.9** to provide a session selector and frame slider. Mov
 - Gaia supplies catalogued stars after that solution. The pipeline uses it to verify the WASP host and select comparison stars.
 - Plate solutions and Gaia results are cached in each output folder, so ordinary reruns do not need another online query.
 
+### ASTAP local solver
+
+ASTAP CLI and the D05/D20 star databases are installed on the main Windows development machine at:
+
+```text
+%LOCALAPPDATA%\Programs\ASTAP\astap_cli.exe
+```
+
+This makes ASTAP callable by Python or Codex without opening its GUI. Verify the installation with:
+
+```powershell
+python scripts\check_astap.py
+```
+
+Current status: installation and CLI/database discovery pass, but ASTAP did not solve the small `650×500` CoRoT-2 reference frame during initial tuning, even though Astrometry.net solved it. ASTAP is therefore **not yet the production solver**. Existing targets require no solver call because their WCS files are cached. For a new field, the pipeline continues to use Astrometry.net until ASTAP preprocessing is validated.
+
 ### Project POC pipeline
 
 `pipeline/poc_pipeline.py` performs calibration, reference selection, coordinate solving, star tracking, aperture photometry, time conversion, quality filtering, a diagnostic transit fit, and export.
