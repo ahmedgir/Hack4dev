@@ -1,0 +1,925 @@
+Checking exotethys database...
+Checking ephemerides database...
+Checking photometry database...
+Checking catalogues database...
+Staged 85/86 FITS images; excluded CoRoT-2260816044002.fits
+
+*************************************************************
+Welcome to the EXOplanet Transit Interpretation Code (EXOTIC)
+Version 4.3.1
+*************************************************************
+
+
+**************************
+Complete Reduction Routine
+**************************
+
+Looking up CoRoT-2 b on the NASA Exoplanet Archive. Please wait....
+Successfully found CoRoT-2 b in the NASA Exoplanet Archive!
+Setting random number seed to 20260816
+
+**************************
+Starting Reduction Process
+**************************
+
+PHOENIX models are only computed for solar metallicity stars. Setting stellar_metallicity = 0.
+PHOENIX models are only computed for solar metallicity stars. Setting stellar_metallicity = 0.
+PHOENIX models are only computed for solar metallicity stars. Setting stellar_metallicity = 0.
+PHOENIX models are only computed for solar metallicity stars. Setting stellar_metallicity = 0.
+PHOENIX models are only computed for solar metallicity stars. Setting stellar_metallicity = 0.
+Offline PHOENIX limb darkening: u1=0.514544+/-0.144500, u2=-0.284371+/-0.353558, u3=0.952637+/-0.333710, u4=-0.420856+/-0.098929
+Dark subtracting images.
+Finding transformation 1 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816044215.fits
+Finding transformation 2 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816044515.fits
+Finding transformation 3 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816044815.fits
+Finding transformation 4 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816045115.fits
+Finding transformation 5 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816045416.fits
+Finding transformation 6 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816045716.fits
+Finding transformation 7 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816050015.fits
+Finding transformation 8 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816050315.fits
+Finding transformation 9 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816050615.fits
+Finding transformation 10 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816050915.fits
+Finding transformation 11 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816051215.fits
+Finding transformation 12 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816051515.fits
+Finding transformation 13 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816051815.fits
+Finding transformation 14 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816052115.fits
+Finding transformation 15 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816052415.fits
+Finding transformation 16 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816053015.fits
+Finding transformation 17 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816053316.fits
+Finding transformation 18 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816053616.fits
+Finding transformation 19 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816053916.fits
+Finding transformation 20 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816054215.fits
+Finding transformation 21 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816054515.fits
+Finding transformation 22 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816054815.fits
+Finding transformation 23 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816055115.fits
+Finding transformation 24 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816055415.fits
+Finding transformation 25 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816055715.fits
+Finding transformation 26 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816060015.fits
+Finding transformation 27 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816060315.fits
+Finding transformation 28 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816060616.fits
+Finding transformation 29 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816060915.fits
+Finding transformation 30 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816061215.fits
+Finding transformation 31 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816061515.fits
+Finding transformation 32 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816061815.fits
+Finding transformation 33 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816062116.fits
+Finding transformation 34 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816062415.fits
+Finding transformation 35 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816062715.fits
+Finding transformation 36 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816063015.fits
+Finding transformation 37 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816063315.fits
+Finding transformation 38 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816063616.fits
+Finding transformation 39 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816063915.fits
+Finding transformation 40 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816064216.fits
+Finding transformation 41 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816064515.fits
+Finding transformation 42 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816064815.fits
+Finding transformation 43 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816065115.fits
+Finding transformation 44 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816065415.fits
+Finding transformation 45 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816065716.fits
+Finding transformation 46 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816070015.fits
+Finding transformation 47 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816070315.fits
+Finding transformation 48 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816070615.fits
+Finding transformation 49 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816070916.fits
+Finding transformation 50 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816071216.fits
+Finding transformation 51 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816071515.fits
+Finding transformation 52 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816071815.fits
+Finding transformation 53 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816072115.fits
+Finding transformation 54 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816072416.fits
+Finding transformation 55 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816072715.fits
+Finding transformation 56 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816073015.fits
+Finding transformation 57 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816073316.fits
+Finding transformation 58 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816073615.fits
+Finding transformation 59 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816073915.fits
+Finding transformation 60 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816074215.fits
+Finding transformation 61 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816074516.fits
+Finding transformation 62 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816074816.fits
+Finding transformation 63 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816075115.fits
+Finding transformation 64 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816075415.fits
+Finding transformation 65 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816075715.fits
+Finding transformation 66 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816080015.fits
+Finding transformation 67 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816080316.fits
+Finding transformation 68 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816080615.fits
+Finding transformation 69 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816080915.fits
+Finding transformation 70 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816081216.fits
+Finding transformation 71 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816081515.fits
+Finding transformation 72 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816081815.fits
+Finding transformation 73 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816082115.fits
+Finding transformation 74 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816082415.fits
+Finding transformation 75 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816082715.fits
+Finding transformation 76 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816083015.fits
+Finding transformation 77 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816083316.fits
+Finding transformation 78 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816083615.fits
+Finding transformation 79 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816083915.fits
+Finding transformation 80 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816084215.fits
+Finding transformation 81 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816084517.fits
+Finding transformation 82 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816084816.fits
+Finding transformation 83 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816085116.fits
+Finding transformation 84 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816085415.fits
+Finding transformation 85 of 85 : /home/ahmed/repos/Hack4dev/outputs/exotic_validation/2026-08-16/input_fits/CoRoT-2260816085715.fits
+
+Computing best comparison star, aperture, and sky annulus. Please wait.
+
+
+*********************************************
+Best Comparison Star: #1
+Minimum Residual Scatter: 1.4358%
+Optimal Method: PSF photometry
+*********************************************
+
+
+
+Output File Saved
+
+
+****************************************
+Fitting a Light Curve Model to Your Data
+****************************************
+
+[ultranest] Sampling 400 live points from prior ...
+
+
+Mono-modal Volume: ~exp(-4.05) * Expected Volume: exp(0.00) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -3.0|*****************************************************|     +3.0
+
+Z=-inf(0.00%) | Like=-976582.24..-44.40 [-976582.2417..-24192.5758] | it/evals=0/401 eff=0.0000% N=400
+Z=-372477.9(0.00%) | Like=-354368.50..-39.43 [-976582.2417..-24192.5758] | it/evals=40/442 eff=95.2381% N=400
+Z=-183345.3(0.00%) | Like=-182295.36..-39.43 [-976582.2417..-24192.5758] | it/evals=80/489 eff=89.8876% N=400
+
+
+Mono-modal Volume: ~exp(-4.05)   Expected Volume: exp(-0.23) Quality: ok
+
+rprs:   +0.0000|********************************************** ******|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -3.0|*******************************************  +1.9    |     +3.0
+
+Z=-74204.7(0.00%) | Like=-74114.34..-39.43 [-976582.2417..-24192.5758] | it/evals=120/540 eff=85.7143% N=400
+Z=-37107.4(0.00%) | Like=-36909.92..-39.43 [-976582.2417..-24192.5758] | it/evals=160/606 eff=77.6699% N=400
+
+
+Mono-modal Volume: ~exp(-4.18) * Expected Volume: exp(-0.45) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -3.0|  ***********************************  +1.1          |     +3.0
+
+Z=-34098.1(0.00%) | Like=-34013.04..-39.43 [-976582.2417..-24192.5758] | it/evals=180/632 eff=77.5862% N=400
+Z=-30840.0(0.00%) | Like=-30595.85..-39.43 [-976582.2417..-24192.5758] | it/evals=200/659 eff=77.2201% N=400
+Z=-27264.2(0.00%) | Like=-27102.88..-39.43 [-976582.2417..-24192.5758] | it/evals=240/717 eff=75.7098% N=400
+
+
+Mono-modal Volume: ~exp(-4.40) * Expected Volume: exp(-0.67) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -3.0|        ****************************  +1.0           |     +3.0
+
+Z=-24625.6(0.00%) | Like=-24587.06..-39.43 [-976582.2417..-24192.5758] | it/evals=270/766 eff=73.7705% N=400
+Z=-23681.6(0.00%) | Like=-23664.42..-39.43 [-24134.1019..-7370.7105] | it/evals=280/780 eff=73.6842% N=400
+Z=-20253.6(0.00%) | Like=-20222.70..-39.43 [-24134.1019..-7370.7105] | it/evals=320/857 eff=70.0219% N=400
+
+
+Mono-modal Volume: ~exp(-4.72) * Expected Volume: exp(-0.90) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -3.0|      -1.6  **********************  +0.8             |     +3.0
+
+Z=-17273.1(0.00%) | Like=-17247.35..-39.43 [-24134.1019..-7370.7105] | it/evals=360/924 eff=68.7023% N=400
+Z=-14147.6(0.00%) | Like=-14130.54..-39.43 [-24134.1019..-7370.7105] | it/evals=400/974 eff=69.6864% N=400
+Z=-12095.7(0.00%) | Like=-12083.72..-39.43 [-24134.1019..-7370.7105] | it/evals=440/1034 eff=69.4006% N=400
+
+
+Mono-modal Volume: ~exp(-4.97) * Expected Volume: exp(-1.12) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -3.0|         -1.2  *******************  +0.8             |     +3.0
+
+Z=-11437.3(0.00%) | Like=-11407.06..-39.43 [-24134.1019..-7370.7105] | it/evals=450/1053 eff=68.9127% N=400
+Z=-10045.8(0.00%) | Like=-10023.53..-39.43 [-24134.1019..-7370.7105] | it/evals=480/1096 eff=68.9655% N=400
+Z=-8408.9(0.00%) | Like=-8333.47..-39.43 [-24134.1019..-7370.7105] | it/evals=520/1157 eff=68.6922% N=400
+
+
+Mono-modal Volume: ~exp(-4.97)   Expected Volume: exp(-1.35) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -1.0| *******************************************         |     +1.0
+
+Z=-7092.1(0.00%) | Like=-7077.76..-39.43 [-7362.3574..-1777.6425] | it/evals=560/1222 eff=68.1265% N=400
+Z=-5637.4(0.00%) | Like=-5627.26..-39.43 [-7362.3574..-1777.6425] | it/evals=600/1304 eff=66.3717% N=400
+
+
+Mono-modal Volume: ~exp(-4.97)   Expected Volume: exp(-1.57) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -1.0|      ***********************************  +0.5      |     +1.0
+
+Z=-4714.0(0.00%) | Like=-4690.22..-39.43 [-7362.3574..-1777.6425] | it/evals=640/1387 eff=64.8430% N=400
+Z=-3975.0(0.00%) | Like=-3943.25..-39.43 [-7362.3574..-1777.6425] | it/evals=680/1466 eff=63.7899% N=400
+
+
+Mono-modal Volume: ~exp(-5.47) * Expected Volume: exp(-1.80) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*************************************** *************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -1.0|     -0.6  ****************************  +0.4        |     +1.0
+
+Z=-3248.3(0.00%) | Like=-3213.42..-38.80 [-7362.3574..-1777.6425] | it/evals=720/1561 eff=62.0155% N=400
+Z=-2630.1(0.00%) | Like=-2611.82..-38.80 [-7362.3574..-1777.6425] | it/evals=760/1633 eff=61.6383% N=400
+Z=-2153.4(0.00%) | Like=-2143.01..-38.80 [-7362.3574..-1777.6425] | it/evals=800/1699 eff=61.5858% N=400
+
+
+Mono-modal Volume: ~exp(-5.93) * Expected Volume: exp(-2.02) Quality: ok
+
+rprs:   +0.0000|*****************************************************|  +0.2243
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -1.0|        -0.4  ***********************  +0.4          |     +1.0
+
+Z=-2029.8(0.00%) | Like=-2000.63..-38.80 [-7362.3574..-1777.6425] | it/evals=810/1715 eff=61.5970% N=400
+Z=-1757.0(0.00%) | Like=-1746.61..-38.80 [-1775.3087..-502.7820] | it/evals=840/1757 eff=61.9013% N=400
+Z=-1481.5(0.00%) | Like=-1472.07..-38.80 [-1775.3087..-502.7820] | it/evals=880/1827 eff=61.6678% N=400
+
+
+Mono-modal Volume: ~exp(-5.93)   Expected Volume: exp(-2.25) Quality: ok
+
+rprs:    +0.000|*****************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*************************** *************************|    +90.0
+a2  :      -1.0|          -0.4  *******************  +0.3            |     +1.0
+
+Z=-1242.1(0.00%) | Like=-1224.28..-38.80 [-1775.3087..-502.7820] | it/evals=920/1891 eff=61.7036% N=400
+Z=-1017.7(0.00%) | Like=-1006.39..-38.80 [-1775.3087..-502.7820] | it/evals=960/1959 eff=61.5779% N=400
+
+
+Mono-modal Volume: ~exp(-6.42) * Expected Volume: exp(-2.47) Quality: ok
+
+rprs:    +0.000|*****************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -1.0|             -0.3  ***************  +0.3             |     +1.0
+
+Z=-885.3(0.00%) | Like=-871.46..-37.44 [-1775.3087..-502.7820] | it/evals=990/2023 eff=60.9982% N=400
+Z=-797.3(0.00%) | Like=-787.78..-37.44 [-1775.3087..-502.7820] | it/evals=1000/2040 eff=60.9756% N=400
+Z=-683.6(0.00%) | Like=-672.72..-37.44 [-1775.3087..-502.7820] | it/evals=1040/2095 eff=61.3569% N=400
+
+
+Mono-modal Volume: ~exp(-6.60) * Expected Volume: exp(-2.70) Quality: ok
+
+rprs:    +0.000|*****************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -1.0|              -0.2  ************  +0.2               |     +1.0
+
+Z=-573.2(0.00%) | Like=-559.73..-37.44 [-1775.3087..-502.7820] | it/evals=1080/2157 eff=61.4684% N=400
+Z=-479.5(0.00%) | Like=-466.91..-37.44 [-502.4152..-147.5606] | it/evals=1120/2217 eff=61.6401% N=400
+Z=-403.4(0.00%) | Like=-394.11..-37.44 [-502.4152..-147.5606] | it/evals=1160/2285 eff=61.5385% N=400
+
+
+Mono-modal Volume: ~exp(-6.79) * Expected Volume: exp(-2.92) Quality: ok
+
+rprs:  +2.2e-07|*****************************************************| +2.2e-01
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -1.0|               -0.2  **********  +0.2                |     +1.0
+
+Z=-380.2(0.00%) | Like=-367.64..-37.44 [-502.4152..-147.5606] | it/evals=1170/2298 eff=61.6438% N=400
+Z=-324.9(0.00%) | Like=-311.47..-37.44 [-502.4152..-147.5606] | it/evals=1200/2347 eff=61.6333% N=400
+Z=-281.2(0.00%) | Like=-272.31..-37.44 [-502.4152..-147.5606] | it/evals=1240/2417 eff=61.4774% N=400
+
+
+Mono-modal Volume: ~exp(-7.02) * Expected Volume: exp(-3.15) Quality: ok
+
+rprs:    +0.000|*****************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :      -1.0|                -0.2  ********  +0.1                 |     +1.0
+
+Z=-255.6(0.00%) | Like=-246.64..-37.44 [-502.4152..-147.5606] | it/evals=1260/2445 eff=61.6137% N=400
+Z=-241.3(0.00%) | Like=-232.91..-37.44 [-502.4152..-147.5606] | it/evals=1280/2476 eff=61.6570% N=400
+Z=-203.3(0.00%) | Like=-193.98..-37.44 [-502.4152..-147.5606] | it/evals=1320/2542 eff=61.6246% N=400
+
+
+Mono-modal Volume: ~exp(-7.51) * Expected Volume: exp(-3.37) Quality: ok
+
+rprs:    +0.000|*****************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -1.00|                -0.12  *******  +0.10                |    +1.00
+
+Z=-173.5(0.00%) | Like=-164.45..-37.44 [-502.4152..-147.5606] | it/evals=1350/2590 eff=61.6438% N=400
+Z=-169.5(0.00%) | Like=-161.19..-37.44 [-502.4152..-147.5606] | it/evals=1360/2605 eff=61.6780% N=400
+Z=-149.2(0.00%) | Like=-140.65..-37.44 [-147.5298..-79.4582] | it/evals=1400/2669 eff=61.7012% N=400
+
+
+Mono-modal Volume: ~exp(-7.55) * Expected Volume: exp(-3.60) Quality: ok
+
+rprs:    +0.000|*** *************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -1.00|                -0.11  ******  +0.08                 |    +1.00
+
+Z=-134.4(0.00%) | Like=-126.20..-37.44 [-147.5298..-79.4582] | it/evals=1440/2734 eff=61.6967% N=400
+Z=-121.6(0.00%) | Like=-113.17..-37.44 [-147.5298..-79.4582] | it/evals=1480/2802 eff=61.6153% N=400
+Z=-112.1(0.00%) | Like=-103.50..-37.44 [-147.5298..-79.4582] | it/evals=1520/2857 eff=61.8641% N=400
+
+
+Mono-modal Volume: ~exp(-7.82) * Expected Volume: exp(-3.82) Quality: ok
+
+rprs:    +0.000|*****************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10| * *****************************************         |    +0.10
+
+Z=-109.9(0.00%) | Like=-101.82..-37.44 [-147.5298..-79.4582] | it/evals=1530/2869 eff=61.9684% N=400
+Z=-103.8(0.00%) | Like=-95.77..-37.05 [-147.5298..-79.4582] | it/evals=1560/2921 eff=61.8802% N=400
+Z=-97.1(0.00%) | Like=-88.59..-37.05 [-147.5298..-79.4582] | it/evals=1600/2987 eff=61.8477% N=400
+
+
+Mono-modal Volume: ~exp(-7.82)   Expected Volume: exp(-4.05) Quality: ok
+
+rprs:    +0.000|*****************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10|   *************************************  +0.05      |    +0.10
+
+Z=-90.0(0.00%) | Like=-81.66..-37.05 [-147.5298..-79.4582] | it/evals=1640/3060 eff=61.6541% N=400
+Z=-84.9(0.00%) | Like=-76.92..-37.05 [-79.4329..-61.0854] | it/evals=1680/3140 eff=61.3139% N=400
+
+
+Mono-modal Volume: ~exp(-8.13) * Expected Volume: exp(-4.27) Quality: ok
+
+rprs:    +0.000|*****************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10|      ********************************  +0.04        |    +0.10
+
+Z=-81.8(0.00%) | Like=-73.85..-37.05 [-79.4329..-61.0854] | it/evals=1710/3213 eff=60.7892% N=400
+Z=-80.9(0.00%) | Like=-73.03..-37.05 [-79.4329..-61.0854] | it/evals=1720/3235 eff=60.6702% N=400
+Z=-78.3(0.00%) | Like=-70.57..-37.05 [-79.4329..-61.0854] | it/evals=1760/3306 eff=60.5643% N=400
+
+
+Mono-modal Volume: ~exp(-8.46) * Expected Volume: exp(-4.50) Quality: ok
+
+rprs:    +0.000|  ***************************************************|   +0.224
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|** **************************************************|    +90.0
+a2  :     -0.10|      *******************************  +0.04         |    +0.10
+
+Z=-76.2(0.00%) | Like=-69.00..-37.05 [-79.4329..-61.0854] | it/evals=1800/3380 eff=60.4027% N=400
+Z=-74.8(0.00%) | Like=-67.30..-37.05 [-79.4329..-61.0854] | it/evals=1840/3454 eff=60.2489% N=400
+Z=-72.8(0.00%) | Like=-65.05..-37.05 [-79.4329..-61.0854] | it/evals=1880/3535 eff=59.9681% N=400
+
+
+Mono-modal Volume: ~exp(-8.71) * Expected Volume: exp(-4.73) Quality: ok
+
+rprs:     +0.00|          * *****************************************|    +0.22
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|** **************************************************|    +90.0
+a2  :     -0.10|        ****************************  +0.03          |    +0.10
+
+Z=-72.2(0.00%) | Like=-64.35..-37.05 [-79.4329..-61.0854] | it/evals=1890/3554 eff=59.9239% N=400
+Z=-70.8(0.00%) | Like=-63.10..-37.05 [-79.4329..-61.0854] | it/evals=1920/3606 eff=59.8877% N=400
+Z=-68.8(0.00%) | Like=-60.98..-37.05 [-61.0660..-51.6807] | it/evals=1960/3687 eff=59.6288% N=400
+
+
+Mono-modal Volume: ~exp(-8.73) * Expected Volume: exp(-4.95) Quality: ok
+
+rprs:     +0.00|        +0.07  **************************************|    +0.22
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10|         **************************  +0.03           |    +0.10
+
+Z=-68.0(0.00%) | Like=-60.16..-37.05 [-61.0660..-51.6807] | it/evals=1980/3733 eff=59.4059% N=400
+Z=-67.1(0.00%) | Like=-59.41..-37.05 [-61.0660..-51.6807] | it/evals=2000/3787 eff=59.0493% N=400
+Z=-65.6(0.00%) | Like=-57.86..-37.05 [-61.0660..-51.6807] | it/evals=2040/3880 eff=58.6207% N=400
+
+
+Mono-modal Volume: ~exp(-8.73)   Expected Volume: exp(-5.18) Quality: ok
+
+rprs:     +0.00|           +0.08  ***********************************|    +0.22
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|** **************************************************|    +90.0
+a2  :     -0.10|          ************************  +0.03            |    +0.10
+
+Z=-64.3(0.00%) | Like=-56.46..-37.05 [-61.0660..-51.6807] | it/evals=2080/3974 eff=58.1981% N=400
+Z=-62.8(0.00%) | Like=-54.74..-37.05 [-61.0660..-51.6807] | it/evals=2120/4074 eff=57.7028% N=400
+
+
+Mono-modal Volume: ~exp(-9.71) * Expected Volume: exp(-5.40) Quality: ok
+
+rprs:     +0.00|             +0.09  *********************************|    +0.22
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10|    -0.06  **********************  +0.02             |    +0.10
+
+Z=-61.5(0.00%) | Like=-53.80..-37.05 [-61.0660..-51.6807] | it/evals=2160/4175 eff=57.2185% N=400
+Z=-60.6(0.00%) | Like=-52.78..-37.05 [-61.0660..-51.6807] | it/evals=2200/4246 eff=57.2023% N=400
+Z=-59.7(0.00%) | Like=-51.96..-37.05 [-61.0660..-51.6807] | it/evals=2240/4335 eff=56.9250% N=400
+
+
+Mono-modal Volume: ~exp(-9.71)   Expected Volume: exp(-5.63) Quality: ok
+
+rprs:     +0.00|              +0.09  ********************************|    +0.22
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10|    -0.06  **********************  +0.02             |    +0.10
+
+Z=-58.8(0.00%) | Like=-50.96..-36.89 [-51.6583..-46.5691] | it/evals=2280/4432 eff=56.5476% N=400
+Z=-58.0(0.00%) | Like=-50.16..-36.89 [-51.6583..-46.5691] | it/evals=2320/4516 eff=56.3654% N=400
+
+
+Mono-modal Volume: ~exp(-9.80) * Expected Volume: exp(-5.85) Quality: ok
+
+rprs:     +0.00|               +0.10  *******************************|    +0.22
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10|     -0.05  ********************  +0.02              |    +0.10
+
+Z=-57.6(0.00%) | Like=-49.77..-36.89 [-51.6583..-46.5691] | it/evals=2340/4554 eff=56.3312% N=400
+Z=-57.3(0.00%) | Like=-49.46..-36.89 [-51.6583..-46.5691] | it/evals=2360/4603 eff=56.1504% N=400
+Z=-56.6(0.00%) | Like=-48.73..-36.89 [-51.6583..-46.5691] | it/evals=2400/4684 eff=56.0224% N=400
+
+
+Mono-modal Volume: ~exp(-9.88) * Expected Volume: exp(-6.08) Quality: ok
+
+rprs:      +0.0|                  +0.1  ***************************  |     +0.2
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10|     -0.05  *******************  +0.02               |    +0.10
+
+Z=-56.1(0.01%) | Like=-48.25..-36.89 [-51.6583..-46.5691] | it/evals=2430/4751 eff=55.8492% N=400
+Z=-56.0(0.01%) | Like=-48.08..-36.89 [-51.6583..-46.5691] | it/evals=2440/4774 eff=55.7842% N=400
+Z=-55.4(0.01%) | Like=-47.45..-36.89 [-51.6583..-46.5691] | it/evals=2480/4884 eff=55.3078% N=400
+
+
+Mono-modal Volume: ~exp(-9.88)   Expected Volume: exp(-6.30) Quality: ok
+
+rprs:      +0.0|                   +0.1  **************************  |     +0.2
+tmid: +2461268.78|*****************************************************|+2461268.79
+inc :     +82.8|*****************************************************|    +90.0
+a2  :     -0.10|      -0.05  ******************  +0.01               |    +0.10
+
+Z=-54.9(0.03%) | Like=-46.88..-36.89 [-51.6583..-46.5691] | it/evals=2520/4968 eff=55.1664% N=400
+Z=-54.3(0.05%) | Like=-46.33..-36.89 [-46.5581..-43.0975] | it/evals=2560/5059 eff=54.9474% N=400
+Z=-53.9(0.07%) | Like=-45.79..-36.89 [-46.5581..-43.0975] | it/evals=2600/5180 eff=54.3933% N=400
+
+
+Mono-modal Volume: ~exp(-10.34) * Expected Volume: exp(-6.53) Quality: ok
+
+rprs:      +0.0|                    +0.1  ***********************    |     +0.2
+tmid: +2461268.78|*************************************** **********  *|+2461268.79
+inc :     +82.8|  * ** **********************************************|    +90.0
+a2  :     -0.10|       -0.05  ****************  +0.01                |    +0.10
+
+Z=-53.7(0.09%) | Like=-45.68..-36.89 [-46.5581..-43.0975] | it/evals=2610/5198 eff=54.3977% N=400
+Z=-53.4(0.12%) | Like=-45.37..-36.89 [-46.5581..-43.0975] | it/evals=2640/5283 eff=54.0651% N=400
+Z=-53.0(0.18%) | Like=-44.90..-36.89 [-46.5581..-43.0975] | it/evals=2680/5395 eff=53.6537% N=400
+
+
+Mono-modal Volume: ~exp(-10.69) * Expected Volume: exp(-6.75) Quality: ok
+
+rprs:      +0.0|                      +0.1  ********************     |     +0.2
+tmid: +2461268.78|********************************************** * *   |+2461268.79
+inc :     +82.8|  * ***** *******************************************|    +90.0
+a2  :    -0.100|      -0.046  ***************  +0.009                |   +0.100
+
+Z=-52.8(0.23%) | Like=-44.59..-36.89 [-46.5581..-43.0975] | it/evals=2700/5482 eff=53.1287% N=400
+Z=-52.6(0.26%) | Like=-44.35..-36.89 [-46.5581..-43.0975] | it/evals=2720/5536 eff=52.9595% N=400
+Z=-52.2(0.39%) | Like=-43.88..-36.89 [-46.5581..-43.0975] | it/evals=2760/5640 eff=52.6718% N=400
+
+
+Mono-modal Volume: ~exp(-10.69)   Expected Volume: exp(-6.98) Quality: ok
+
+rprs:      +0.0|                      +0.1  ********************     |     +0.2
+tmid: +2461268.78|***********************************************      |+2461268.79
+inc :     +82.8|      *** *******************************************|    +90.0
+a2  :    -0.100|      -0.045  ***************  +0.007                |   +0.100
+
+Z=-51.8(0.59%) | Like=-43.44..-36.89 [-46.5581..-43.0975] | it/evals=2800/5748 eff=52.3560% N=400
+Z=-51.4(0.80%) | Like=-43.03..-36.89 [-43.0922..-41.1117] | it/evals=2840/5891 eff=51.7210% N=400
+
+
+Mono-modal Volume: ~exp(-11.06) * Expected Volume: exp(-7.20) Quality: ok
+
+rprs:      +0.0|                       +0.1  *****************       |     +0.2
+tmid: +2461268.78|*************************************** ** *         |+2461268.79
+inc :     +82.8|        *********************************************|    +90.0
+a2  :    -0.100|      -0.044  **************  +0.005                 |   +0.100
+
+Z=-51.1(1.14%) | Like=-42.66..-36.89 [-43.0922..-41.1117] | it/evals=2880/6008 eff=51.3552% N=400
+Z=-50.7(1.50%) | Like=-42.32..-36.89 [-43.0922..-41.1117] | it/evals=2920/6118 eff=51.0668% N=400
+Z=-50.4(2.00%) | Like=-42.05..-36.89 [-43.0922..-41.1117] | it/evals=2960/6239 eff=50.6936% N=400
+
+
+Mono-modal Volume: ~exp(-11.40) * Expected Volume: exp(-7.43) Quality: ok
+
+rprs:      +0.0|                        +0.1  ****************       |     +0.2
+tmid: +2461268.782|*************************************** **  +2461268.792|+2461268.794
+inc :     +82.8|          ** ****************************************|    +90.0
+a2  :    -0.100|       -0.042  *************  +0.003                 |   +0.100
+
+Z=-50.4(2.16%) | Like=-41.97..-36.89 [-43.0922..-41.1117] | it/evals=2970/6264 eff=50.6480% N=400
+Z=-50.2(2.67%) | Like=-41.75..-36.89 [-43.0922..-41.1117] | it/evals=3000/6360 eff=50.3356% N=400
+Z=-49.9(3.38%) | Like=-41.38..-36.89 [-43.0922..-41.1117] | it/evals=3040/6487 eff=49.9425% N=400
+
+
+Mono-modal Volume: ~exp(-12.05) * Expected Volume: exp(-7.65) Quality: ok
+
+rprs:      +0.0|                         +0.1  ***************       |     +0.2
+tmid: +2461268.782|**************************************  +2461268.791 |+2461268.794
+inc :     +82.8|          ** ****************************************|    +90.0
+a2  :    -0.100|        -0.039  ************  +0.003                 |   +0.100
+
+Z=-49.8(3.89%) | Like=-41.26..-36.89 [-43.0922..-41.1117] | it/evals=3060/6572 eff=49.5787% N=400
+Z=-49.7(4.25%) | Like=-41.11..-36.89 [-41.1053..-40.2579] | it/evals=3080/6623 eff=49.4938% N=400
+Z=-49.5(5.37%) | Like=-40.83..-36.89 [-41.1053..-40.2579] | it/evals=3120/6721 eff=49.3593% N=400
+
+
+Mono-modal Volume: ~exp(-12.31) * Expected Volume: exp(-7.88) Quality: ok
+
+rprs:      +0.0|                         +0.1  **************        |     +0.2
+tmid: +2461268.782|*************************************  +2461268.791  |+2461268.794
+inc :     +82.8|     +84.6  *****************************************|    +90.0
+a2  :   -0.1000|       -0.0380  ***********  +0.0009                 |  +0.1000
+
+Z=-49.3(6.23%) | Like=-40.66..-36.89 [-41.1053..-40.2579] | it/evals=3150/6806 eff=49.1727% N=400
+Z=-49.2(6.58%) | Like=-40.56..-36.89 [-41.1053..-40.2579] | it/evals=3160/6833 eff=49.1217% N=400
+Z=-49.0(8.10%) | Like=-40.33..-36.71 [-41.1053..-40.2579] | it/evals=3200/6928 eff=49.0196% N=400
+
+
+Mono-modal Volume: ~exp(-12.31)   Expected Volume: exp(-8.10) Quality: ok
+
+rprs:      +0.0|                          +0.1  *************        |     +0.2
+tmid: +2461268.782|********************************* *  +2461268.790    |+2461268.794
+inc :     +82.8|      +84.6  ****************************************|    +90.0
+a2  :    -0.100|        -0.039  **********  -0.002                   |   +0.100
+
+Z=-48.8(9.54%) | Like=-40.16..-36.71 [-40.2565..-39.9500] | it/evals=3240/7023 eff=48.9204% N=400
+Z=-48.7(11.19%) | Like=-39.95..-36.71 [-40.2565..-39.9500] | it/evals=3280/7119 eff=48.8168% N=400
+Z=-48.5(13.07%) | Like=-39.79..-36.71 [-39.9488..-39.7798] | it/evals=3320/7219 eff=48.6875% N=400
+
+
+Mono-modal Volume: ~exp(-12.62) * Expected Volume: exp(-8.33) Quality: ok
+
+rprs:      +0.0|                          +0.1  ************         |     +0.2
+tmid: +2461268.782|********************************* *  +2461268.790    |+2461268.794
+inc :     +82.8|        +84.9  *** **********************************|    +90.0
+a2  :    -0.100|        -0.037  **********  -0.002                   |   +0.100
+
+Z=-48.5(13.54%) | Like=-39.75..-36.71 [-39.7765..-39.6836] | it/evals=3330/7242 eff=48.6700% N=400
+Z=-48.4(15.19%) | Like=-39.58..-36.71 [-39.5798..-39.5787]*| it/evals=3360/7316 eff=48.5830% N=400
+Z=-48.2(17.06%) | Like=-39.39..-36.71 [-39.3883..-39.3876]*| it/evals=3400/7436 eff=48.3229% N=400
+
+
+Mono-modal Volume: ~exp(-12.62)   Expected Volume: exp(-8.55) Quality: ok
+
+rprs:      +0.0|                           +0.1  ***********         |     +0.2
+tmid: +2461268.782|********************************  +2461268.789       |+2461268.794
+inc :     +82.8|         +85.0  *************************************|    +90.0
+a2  :    -0.100|        -0.037  **********  -0.004                   |   +0.100
+
+Z=-48.1(19.44%) | Like=-39.24..-36.71 [-39.2420..-39.2339]*| it/evals=3440/7560 eff=48.0447% N=400
+Z=-48.0(22.10%) | Like=-39.11..-36.71 [-39.1083..-39.1059]*| it/evals=3480/7703 eff=47.6517% N=400
+
+
+Mono-modal Volume: ~exp(-13.00) * Expected Volume: exp(-8.78) Quality: ok
+
+rprs:      +0.0|                           +0.1  ***********         |     +0.2
+tmid: +2461268.782|********************************  +2461268.789       |+2461268.794
+inc :     +82.8|          +85.2  ************************************|    +90.0
+a2  :    -0.100|         -0.035  *********  -0.005                   |   +0.100
+
+Z=-47.9(23.73%) | Like=-39.00..-36.71 [-38.9951..-38.9928]*| it/evals=3510/7781 eff=47.5545% N=400
+Z=-47.9(24.33%) | Like=-38.96..-36.71 [-38.9591..-38.9544]*| it/evals=3520/7806 eff=47.5290% N=400
+Z=-47.7(26.95%) | Like=-38.83..-36.71 [-38.8267..-38.8235]*| it/evals=3560/7897 eff=47.4857% N=400
+
+
+Mono-modal Volume: ~exp(-13.45) * Expected Volume: exp(-9.00) Quality: ok
+
+rprs:      +0.0|                           +0.1  ***********         |     +0.2
+tmid: +2461268.782|*******************************  +2461268.789        |+2461268.794
+inc :     +82.8|            +85.5  * ********************************|    +90.0
+a2  :    -0.100|         -0.034  ********  -0.006                    |   +0.100
+
+Z=-47.6(29.99%) | Like=-38.69..-36.71 [-38.6922..-38.6877]*| it/evals=3600/7983 eff=47.4746% N=400
+Z=-47.6(33.06%) | Like=-38.54..-36.71 [-38.5391..-38.5336]*| it/evals=3640/8048 eff=47.5941% N=400
+Z=-47.5(36.35%) | Like=-38.43..-36.71 [-38.4284..-38.4247]*| it/evals=3680/8135 eff=47.5760% N=400
+
+
+Mono-modal Volume: ~exp(-13.45)   Expected Volume: exp(-9.23) Quality: ok
+
+rprs:      +0.0|                            +0.1  *********  +0.2    |     +0.2
+tmid: +2461268.782|*****************************  +2461268.789          |+2461268.794
+inc :     +82.8|            +85.5  * ********************************|    +90.0
+a2  :    -0.100|         -0.034  ********  -0.006                    |   +0.100
+
+Z=-47.4(39.30%) | Like=-38.34..-36.71 [-38.3371..-38.3340]*| it/evals=3720/8235 eff=47.4793% N=400
+Z=-47.3(42.49%) | Like=-38.25..-36.71 [-38.2476..-38.2456]*| it/evals=3760/8350 eff=47.2956% N=400
+
+
+Mono-modal Volume: ~exp(-13.48) * Expected Volume: exp(-9.45) Quality: ok
+
+rprs:      +0.0|                            +0.1  *********  +0.2    |     +0.2
+tmid: +2461268.782|****************************  +2461268.788           |+2461268.794
+inc :     +82.8|               +85.9  *******************************|    +90.0
+a2  :    -0.100|         -0.032  ********  -0.008                    |   +0.100
+
+Z=-47.3(44.11%) | Like=-38.21..-36.71 [-38.2053..-38.2022]*| it/evals=3780/8401 eff=47.2441% N=400
+Z=-47.2(45.60%) | Like=-38.17..-36.71 [-38.1689..-38.1669]*| it/evals=3800/8448 eff=47.2167% N=400
+Z=-47.2(48.38%) | Like=-38.07..-36.66 [-38.0720..-38.0709]*| it/evals=3840/8544 eff=47.1513% N=400
+
+
+Mono-modal Volume: ~exp(-13.77) * Expected Volume: exp(-9.68) Quality: ok
+
+rprs:      +0.0|                            +0.1  *********  +0.2    |     +0.2
+tmid: +2461268.782|***************************  +2461268.788            |+2461268.794
+inc :     +82.8|                +86.0  ******************************|    +90.0
+a2  :    -0.100|          -0.031  *******  -0.007                    |   +0.100
+
+Z=-47.1(50.76%) | Like=-38.01..-36.66 [-38.0128..-38.0098]*| it/evals=3870/8599 eff=47.2009% N=400
+Z=-47.1(51.51%) | Like=-38.00..-36.66 [-37.9954..-37.9940]*| it/evals=3880/8624 eff=47.1790% N=400
+Z=-47.1(54.15%) | Like=-37.93..-36.66 [-37.9286..-37.9258]*| it/evals=3920/8710 eff=47.1721% N=400
+
+
+Mono-modal Volume: ~exp(-14.34) * Expected Volume: exp(-9.90) Quality: ok
+
+rprs:      +0.0|                             +0.1  *******  +0.2     |     +0.2
+tmid: +2461268.782|**************************  +2461268.788             |+2461268.794
+inc :     +82.8|                 +86.1  *****************************|    +90.0
+a2  :     -0.10|           -0.03  ******  -0.01                      |    +0.10
+
+Z=-47.0(56.83%) | Like=-37.88..-36.66 [-37.8760..-37.8750]*| it/evals=3960/8844 eff=46.8972% N=400
+Z=-47.0(59.46%) | Like=-37.81..-36.64 [-37.8091..-37.8088]*| it/evals=4000/8940 eff=46.8384% N=400
+Z=-46.9(61.88%) | Like=-37.73..-36.64 [-37.7349..-37.7333]*| it/evals=4040/9035 eff=46.7863% N=400
+
+
+Mono-modal Volume: ~exp(-14.34)   Expected Volume: exp(-10.13) Quality: ok
+
+rprs:      +0.0|                             +0.1  *******  +0.2     |     +0.2
+tmid: +2461268.782|************************  +2461268.787               |+2461268.794
+inc :     +82.8|                  +86.3  ****************************|    +90.0
+a2  :     -0.10|           -0.03  ******  -0.01                      |    +0.10
+
+Z=-46.9(64.40%) | Like=-37.68..-36.64 [-37.6759..-37.6757]*| it/evals=4080/9134 eff=46.7140% N=400
+Z=-46.9(66.57%) | Like=-37.62..-36.64 [-37.6235..-37.6228]*| it/evals=4120/9251 eff=46.5484% N=400
+
+
+Mono-modal Volume: ~exp(-14.36) * Expected Volume: exp(-10.35) Quality: ok
+
+rprs:     +0.00|                            +0.15  *******  +0.17    |    +0.22
+tmid: +2461268.782|*************************  +2461268.788              |+2461268.794
+inc :     +82.8|                  +86.3  ****************************|    +90.0
+a2  :     -0.10|           -0.03  ******  -0.01                      |    +0.10
+
+Z=-46.8(67.67%) | Like=-37.60..-36.64 [-37.6025..-37.6001]*| it/evals=4140/9315 eff=46.4386% N=400
+Z=-46.8(68.73%) | Like=-37.57..-36.64 [-37.5727..-37.5712]*| it/evals=4160/9367 eff=46.3923% N=400
+Z=-46.8(70.78%) | Like=-37.53..-36.64 [-37.5260..-37.5250]*| it/evals=4200/9457 eff=46.3730% N=400
+
+
+Mono-modal Volume: ~exp(-14.80) * Expected Volume: exp(-10.58) Quality: ok
+
+rprs:     +0.00|                            +0.15  *******  +0.17    |    +0.22
+tmid: +2461268.782|************************  +2461268.787               |+2461268.794
+inc :     +82.8|                    +86.5  **************************|    +90.0
+a2  :     -0.10|           -0.03  ******  -0.01                      |    +0.10
+
+Z=-46.8(72.25%) | Like=-37.49..-36.64 [-37.4881..-37.4845]*| it/evals=4230/9527 eff=46.3460% N=400
+Z=-46.8(72.74%) | Like=-37.47..-36.64 [-37.4683..-37.4667]*| it/evals=4240/9549 eff=46.3439% N=400
+Z=-46.7(74.65%) | Like=-37.42..-36.64 [-37.4219..-37.4215]*| it/evals=4280/9641 eff=46.3153% N=400
+
+
+Mono-modal Volume: ~exp(-14.80)   Expected Volume: exp(-10.80) Quality: ok
+
+rprs:     +0.00|                            +0.15  *******  +0.17    |    +0.22
+tmid: +2461268.782|**********************  +2461268.787                 |+2461268.794
+inc :     +82.8|                     +86.6  *************************|    +90.0
+a2  :     -0.10|            -0.03  *****  -0.01                      |    +0.10
+
+Z=-46.7(76.45%) | Like=-37.38..-36.64 [-37.3813..-37.3813]*| it/evals=4320/9738 eff=46.2626% N=400
+Z=-46.7(78.23%) | Like=-37.34..-36.64 [-37.3417..-37.3410]*| it/evals=4360/9843 eff=46.1718% N=400
+Z=-46.7(79.86%) | Like=-37.29..-36.64 [-37.2908..-37.2906]*| it/evals=4400/9955 eff=46.0492% N=400
+
+
+Mono-modal Volume: ~exp(-14.98) * Expected Volume: exp(-11.02) Quality: ok
+
+rprs:     +0.00|                             +0.15  *****  +0.17     |    +0.22
+tmid: +2461268.782|***********************  +2461268.787                |+2461268.794
+inc :     +82.8|                      +86.8  ************************|    +90.0
+a2  :     -0.10|            -0.03  *****  -0.01                      |    +0.10
+
+Z=-46.7(80.26%) | Like=-37.28..-36.64 [-37.2833..-37.2819]*| it/evals=4410/9975 eff=46.0574% N=400
+Z=-46.7(81.36%) | Like=-37.25..-36.64 [-37.2465..-37.2463]*| it/evals=4440/10049 eff=46.0151% N=400
+Z=-46.6(82.85%) | Like=-37.21..-36.64 [-37.2087..-37.2080]*| it/evals=4480/10172 eff=45.8453% N=400
+
+
+Mono-modal Volume: ~exp(-15.61) * Expected Volume: exp(-11.25) Quality: ok
+
+rprs:     +0.00|                             +0.15  *****  +0.17     |    +0.22
+tmid: +2461268.782|**********************  +2461268.787                 |+2461268.794
+inc :     +82.8|                      +86.8  ************************|    +90.0
+a2  :     -0.10|            -0.03  ****  -0.01                       |    +0.10
+
+Z=-46.6(83.54%) | Like=-37.20..-36.63 [-37.1952..-37.1949]*| it/evals=4500/10226 eff=45.7969% N=400
+Z=-46.6(84.22%) | Like=-37.18..-36.63 [-37.1781..-37.1776]*| it/evals=4520/10274 eff=45.7768% N=400
+Z=-46.6(85.44%) | Like=-37.15..-36.63 [-37.1521..-37.1514]*| it/evals=4560/10405 eff=45.5772% N=400
+
+
+Mono-modal Volume: ~exp(-15.79) * Expected Volume: exp(-11.47) Quality: ok
+
+rprs:     +0.00|                             +0.15  *****  +0.17     |    +0.22
+tmid: +2461268.782|*********************  +2461268.787                  |+2461268.794
+inc :     +82.8|                       +86.9  ***********************|    +90.0
+a2  :     -0.10|            -0.03  ****  -0.01                       |    +0.10
+
+Z=-46.6(86.31%) | Like=-37.13..-36.63 [-37.1343..-37.1341]*| it/evals=4590/10484 eff=45.5177% N=400
+Z=-46.6(86.60%) | Like=-37.13..-36.63 [-37.1281..-37.1280]*| it/evals=4600/10506 eff=45.5175% N=400
+Z=-46.6(87.70%) | Like=-37.10..-36.63 [-37.1004..-37.0999]*| it/evals=4640/10597 eff=45.5036% N=400
+
+
+Mono-modal Volume: ~exp(-15.81) * Expected Volume: exp(-11.70) Quality: ok
+
+rprs:     +0.00|                             +0.15  *****  +0.17     |    +0.22
+tmid: +2461268.782| ********************  +2461268.787                  |+2461268.794
+inc :     +82.8|                        +87.1  **********************|    +90.0
+a2  :     -0.10|            -0.03  ****  -0.01                       |    +0.10
+
+Z=-46.6(88.74%) | Like=-37.07..-36.63 [-37.0746..-37.0742]*| it/evals=4680/10702 eff=45.4281% N=400
+Z=-46.6(89.66%) | Like=-37.05..-36.63 [-37.0541..-37.0541]*| it/evals=4720/10806 eff=45.3584% N=400
+Z=-46.5(90.52%) | Like=-37.04..-36.63 [-37.0388..-37.0382]*| it/evals=4760/10927 eff=45.2171% N=400
+
+
+Mono-modal Volume: ~exp(-16.10) * Expected Volume: exp(-11.92) Quality: ok
+
+rprs:     +0.00|                             +0.15  *****  +0.17     |    +0.22
+tmid: +2461268.782|  ******************  +2461268.786                   |+2461268.794
+inc :     +82.8|                        +87.1  **********************|    +90.0
+a2  :     -0.10|            -0.03  ****  -0.01                       |    +0.10
+
+Z=-46.5(90.73%) | Like=-37.03..-36.63 [-37.0350..-37.0341]*| it/evals=4770/10959 eff=45.1747% N=400
+Z=-46.5(91.33%) | Like=-37.02..-36.63 [-37.0207..-37.0205]*| it/evals=4800/11031 eff=45.1510% N=400
+Z=-46.5(92.06%) | Like=-37.00..-36.63 [-37.0025..-37.0024]*| it/evals=4840/11130 eff=45.1072% N=400
+
+
+Mono-modal Volume: ~exp(-16.10)   Expected Volume: exp(-12.15) Quality: ok
+
+rprs:     +0.00|                             +0.15  *****  +0.17     |    +0.22
+tmid: +2461268.782|  ******************  +2461268.786                   |+2461268.794
+inc :     +82.8|                         +87.2  *********************|    +90.0
+a2  :     -0.10|            -0.02  ****  -0.01                       |    +0.10
+
+Z=-46.5(92.74%) | Like=-36.98..-36.63 [-36.9814..-36.9814]*| it/evals=4880/11247 eff=44.9894% N=400
+Z=-46.5(93.37%) | Like=-36.97..-36.63 [-36.9695..-36.9691]*| it/evals=4920/11378 eff=44.8169% N=400
+
+
+Mono-modal Volume: ~exp(-16.12) * Expected Volume: exp(-12.37) Quality: ok
+
+rprs:     +0.00|                             +0.15  *****  +0.17     |    +0.22
+tmid: +2461268.782|  *****************  +2461268.786                    |+2461268.794
+inc :     +82.8|                         +87.2  *********************|    +90.0
+a2  :     -0.10|             -0.02  ***  -0.01                       |    +0.10
+
+Z=-46.5(93.81%) | Like=-36.96..-36.63 [-36.9551..-36.9550]*| it/evals=4950/11519 eff=44.5184% N=400
+Z=-46.5(93.95%) | Like=-36.95..-36.63 [-36.9533..-36.9528]*| it/evals=4960/11558 eff=44.4524% N=400
+Z=-46.5(94.47%) | Like=-36.94..-36.63 [-36.9412..-36.9407]*| it/evals=5000/11683 eff=44.3145% N=400
+
+
+Mono-modal Volume: ~exp(-16.34) * Expected Volume: exp(-12.60) Quality: ok
+
+rprs:     +0.00|                              +0.16  ****  +0.17     |    +0.22
+tmid: +2461268.782|  *****************  +2461268.786                    |+2461268.794
+inc :     +82.8|                         +87.3  *********************|    +90.0
+a2  :    -0.100|            -0.024  ***  -0.015                      |   +0.100
+
+Z=-46.5(94.95%) | Like=-36.93..-36.63 [-36.9312..-36.9309]*| it/evals=5040/11823 eff=44.1215% N=400
+Z=-46.5(95.38%) | Like=-36.92..-36.63 [-36.9175..-36.9174]*| it/evals=5080/11938 eff=44.0284% N=400
+Z=-46.5(95.78%) | Like=-36.90..-36.63 [-36.9050..-36.9045]*| it/evals=5120/12054 eff=43.9334% N=400
+
+
+Mono-modal Volume: ~exp(-16.60) * Expected Volume: exp(-12.82) Quality: ok
+
+rprs:     +0.00|                              +0.16  ****  +0.17     |    +0.22
+tmid: +2461268.782|  ****************  +2461268.786                     |+2461268.794
+inc :     +82.8|                         +87.3  *********************|    +90.0
+a2  :    -0.100|            -0.024  ***  -0.015                      |   +0.100
+
+Z=-46.5(95.88%) | Like=-36.90..-36.63 [-36.9026..-36.9015]*| it/evals=5130/12078 eff=43.9288% N=400
+Z=-46.5(96.15%) | Like=-36.89..-36.63 [-36.8937..-36.8931]*| it/evals=5160/12163 eff=43.8664% N=400
+Z=-46.5(96.49%) | Like=-36.88..-36.63 [-36.8789..-36.8785]*| it/evals=5200/12309 eff=43.6645% N=400
+
+
+Mono-modal Volume: ~exp(-16.60) * Expected Volume: exp(-13.05) Quality: ok
+
+rprs:     +0.00|                              +0.16  ****  +0.17     |    +0.22
+tmid: +2461268.782|   ***************  +2461268.786                     |+2461268.794
+inc :     +82.8|                           +87.5  *******************|    +90.0
+a2  :    -0.100|            -0.024  ***  -0.016                      |   +0.100
+
+Z=-46.5(96.65%) | Like=-36.87..-36.63 [-36.8716..-36.8712]*| it/evals=5220/12376 eff=43.5872% N=400
+Z=-46.5(96.80%) | Like=-36.87..-36.63 [-36.8659..-36.8658]*| it/evals=5240/12442 eff=43.5144% N=400
+Z=-46.5(97.08%) | Like=-36.85..-36.63 [-36.8542..-36.8539]*| it/evals=5280/12593 eff=43.3035% N=400
+
+
+Mono-modal Volume: ~exp(-16.79) * Expected Volume: exp(-13.27) Quality: ok
+
+rprs:     +0.00|                              +0.16  ***  +0.17      |    +0.22
+tmid: +2461268.782|   ***************  +2461268.786                     |+2461268.794
+inc :     +82.8|                           +87.6  *******************|    +90.0
+a2  :    -0.100|            -0.023  ***  -0.017                      |   +0.100
+
+Z=-46.5(97.28%) | Like=-36.85..-36.63 [-36.8486..-36.8484]*| it/evals=5310/12695 eff=43.1883% N=400
+Z=-46.5(97.34%) | Like=-36.84..-36.63 [-36.8448..-36.8444]*| it/evals=5320/12740 eff=43.1118% N=400
+Z=-46.5(97.57%) | Like=-36.83..-36.63 [-36.8331..-36.8330]*| it/evals=5360/12841 eff=43.0834% N=400
+
+
+Mono-modal Volume: ~exp(-17.00) * Expected Volume: exp(-13.50) Quality: ok
+
+rprs:    +0.000|                             +0.159  ***  +0.168     |   +0.224
+tmid: +2461268.782|    *************  +2461268.786                      |+2461268.794
+inc :     +82.8|                            +87.6  ******************|    +90.0
+a2  :    -0.100|            -0.023  ***  -0.017                      |   +0.100
+
+Z=-46.5(97.79%) | Like=-36.82..-36.63 [-36.8220..-36.8217]*| it/evals=5400/12956 eff=43.0073% N=400
+Z=-46.5(97.99%) | Like=-36.81..-36.63 [-36.8119..-36.8116]*| it/evals=5440/13103 eff=42.8245% N=400
+Z=-46.5(98.17%) | Like=-36.80..-36.63 [-36.8044..-36.8043]*| it/evals=5480/13247 eff=42.6559% N=400
+
+
+Mono-modal Volume: ~exp(-17.60) * Expected Volume: exp(-13.72) Quality: ok
+
+rprs:    +0.000|                             +0.159  ***  +0.168     |   +0.224
+tmid: +2461268.782|    *************  +2461268.786                      |+2461268.794
+inc :     +82.8|                            +87.6  ******************|    +90.0
+a2  :    -0.100|            -0.023  ***  -0.017                      |   +0.100
+
+Z=-46.5(98.21%) | Like=-36.80..-36.63 [-36.8018..-36.8017]*| it/evals=5490/13277 eff=42.6342% N=400
+Z=-46.5(98.33%) | Like=-36.80..-36.63 [-36.7950..-36.7949]*| it/evals=5520/13383 eff=42.5171% N=400
+Z=-46.5(98.48%) | Like=-36.79..-36.63 [-36.7867..-36.7866]*| it/evals=5560/13510 eff=42.4104% N=400
+
+
+Mono-modal Volume: ~exp(-17.60)   Expected Volume: exp(-13.95) Quality: ok
+
+rprs:    +0.000|                             +0.159  ***  +0.168     |   +0.224
+tmid: +2461268.782|    ************  +2461268.786                       |+2461268.794
+inc :     +82.8|                            +87.6  ******************|    +90.0
+a2  :    -0.100|            -0.023  ***  -0.017                      |   +0.100
+
+Z=-46.5(98.62%) | Like=-36.78..-36.63 [-36.7791..-36.7791]*| it/evals=5600/13663 eff=42.2227% N=400
+Z=-46.5(98.75%) | Like=-36.77..-36.63 [-36.7718..-36.7717]*| it/evals=5640/13816 eff=42.0394% N=400
+
+
+Mono-modal Volume: ~exp(-18.26) * Expected Volume: exp(-14.17) Quality: ok
+
+rprs:    +0.000|                             +0.160  ***  +0.168     |   +0.224
+tmid: +2461268.782|     ***********  +2461268.786                       |+2461268.794
+inc :     +82.8|                              +87.8  ****************|    +90.0
+a2  :    -0.100|            -0.023  ***  -0.017                      |   +0.100
+
+Z=-46.5(98.83%) | Like=-36.77..-36.63 [-36.7675..-36.7673]*| it/evals=5670/13949 eff=41.8481% N=400
+Z=-46.5(98.86%) | Like=-36.77..-36.63 [-36.7665..-36.7665]*| it/evals=5680/13972 eff=41.8509% N=400
+Z=-46.5(98.96%) | Like=-36.76..-36.63 [-36.7599..-36.7599]*| it/evals=5720/14090 eff=41.7823% N=400
+[ultranest] Explored until L=-4e+01
+[ultranest] Likelihood function evaluations: 14151
+[ultranest]   logZ = -46.46 +- 0.1179
+[ultranest] Effective samples strategy satisfied (ESS = 1954.3, need >400)
+[ultranest] Posterior uncertainty strategy is satisfied (KL: 0.46+-0.07 nat, need <0.50 nat)
+[ultranest] Evidency uncertainty strategy is satisfied (dlogz=0.12, need <0.5)
+[ultranest]   logZ error budget: single: 0.14 bs:0.12 tail:0.01 total:0.12 required:<0.50
+[ultranest] done iterating.
+
+*********************************************************
+FINAL PLANETARY PARAMETERS
+
+          Mid-Transit Time [BJD_TDB]: 2461268.7844 +/- 0.0019
+  Radius Ratio (Planet/Star) [Rp/R*]: 0.163 +/- 0.011
+           Transit depth [(Rp/R*)^2]: 2.65 +/- 0.35 [%]
+           Orbital Inclination [inc]: 89.72 +/- 1.25
+               Airmass coefficient 1: 1.029 +/- 0.015
+               Airmass coefficient 2: -0.0197 +/- 0.007
+                    Residual scatter: 1.43 %
+                Best Comparison Star: #1 - [66, 336]
+                       Optimal Method: PSF photometry
+              Transit Duration [day]: 0.096 +/- 0.0014
+*********************************************************
+Output Files Saved
+
+************************
+End of Reduction Process
+************************
+
+
+************************
+EXOTIC has successfully run!!!
+It is now safe to close this window.
+************************
