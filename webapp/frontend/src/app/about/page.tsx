@@ -41,8 +41,8 @@ export default function AboutPage() {
 
       <section className="scope-section">
         <p className="section-label">CURRENT SCOPE</p>
-        <h2>Eight targets, seven reviewed sessions, one shared evidence contract.</h2>
-        <p>Five systems currently have pipeline-complete sessions in the portal; three remain visibly marked as awaiting analysis. CoRoT-2 b is the strongest case, while the incomplete and inconsistent results show why a plausible curve alone is not enough.</p>
+        <h2>Eight targets, nine reviewed sessions, one shared evidence contract.</h2>
+        <p>Seven systems have pipeline-complete sessions in the portal. TrES-1 remains visibly marked as awaiting analysis because its frames contain too few usable stars for a verified coordinate solution. CoRoT-2 b is the strongest case, while the incomplete and inconsistent results show why a plausible curve alone is not enough.</p>
         <div className="scope-links">
           <Link className="nasa-button" href="/systems/corot-2">Explore the first system <span aria-hidden="true">→</span></Link>
           <Link className="text-link" href="/methodology">Review the scientific stack</Link>

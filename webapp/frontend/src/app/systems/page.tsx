@@ -32,7 +32,7 @@ export default function SystemsPage() {
       <section className="page-hero systems-hero">
         <div className="page-hero-inner">
           <p className="breadcrumb">HOME / TARGET SYSTEMS</p>
-          <p className="eyebrow">ONE PROMISING RECOVERY · FOUR NON-CONFIRMING RESULTS</p>
+          <p className="eyebrow">ONE PROMISING RECOVERY · SIX NON-CONFIRMING SYSTEMS</p>
           <h1>Evidence first. Targets second.</h1>
           <p>All eight planets were already confirmed by published astronomy. Our own observations currently support one promising preliminary recovery: CoRoT-2 b.</p>
         </div>
@@ -40,7 +40,7 @@ export default function SystemsPage() {
 
       <section className="catalog-shell">
         <div className="catalog-intro">
-          <div><p className="section-label">REVIEWED EVIDENCE</p><h2>Five systems entered the pipeline. One produced a promising recovery.</h2></div>
+          <div><p className="section-label">REVIEWED EVIDENCE</p><h2>Seven systems entered the pipeline. One produced a promising recovery.</h2></div>
           <p>The other results are not “almost confirmed.” They are retained as transparent examples of incomplete coverage, excessive noise, or parameters that disagree with published values.</p>
         </div>
         <div className="system-grid">

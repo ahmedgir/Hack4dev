@@ -1,0 +1,12 @@
+{
+  "solver": "Gaia constrained catalogue match",
+  "reference_file": "TRES-5260820113015.fits",
+  "pixel_convention": "display_y_flipped",
+  "matched_stars": 146,
+  "residual_rms_px": 0.3303933462053786,
+  "holdout_stars": 73,
+  "holdout_rms_px": 0.2698363345260554,
+  "nearest_target_star_px": 0.19048150061962693,
+  "scale_ratio": 1.0001979586163696,
+  "rotation_radians": -0.007286880100709136
+}

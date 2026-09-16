@@ -33,13 +33,14 @@ def discover_runs() -> list[tuple[str, str]]:
     return runs
 
 
-def _run_session(target: str, date: str, cached_only: bool, no_astap: bool) -> dict:
+def _run_session(target: str, date: str, cached_only: bool, no_astap: bool, local_only: bool) -> dict:
     return run_target(
         ROOT,
         target,
         date,
         allow_plate_solve=not cached_only,
         prefer_astap=not no_astap,
+        allow_remote_astrometry=not local_only,
     )
 
 
@@ -66,6 +67,7 @@ def main() -> int:
     parser.add_argument("--cached-only", action="store_true", help="Do not submit a new Astrometry.net job.")
     parser.add_argument("--all-sessions", action="store_true", help="Process every discovered science session.")
     parser.add_argument("--no-astap", action="store_true", help="Skip the local ASTAP attempt for uncached fields.")
+    parser.add_argument("--local-only", action="store_true", help="Use Gaia matching (catalogue query if needed); never submit to Astrometry.net.")
     parser.add_argument(
         "--jobs",
         type=int,
@@ -83,7 +85,7 @@ def main() -> int:
     if args.jobs == 1 or len(runs) <= 1:
         for target, date in runs:
             try:
-                summary = _run_session(target, date, args.cached_only, args.no_astap)
+                summary = _run_session(target, date, args.cached_only, args.no_astap, args.local_only)
                 _record_result(target, date, summary, None, failures)
             except Exception as exc:
                 _record_result(target, date, None, exc, failures)
@@ -92,7 +94,7 @@ def main() -> int:
         print(f"Processing {len(runs)} sessions with {worker_count} concurrent workers.", flush=True)
         with ProcessPoolExecutor(max_workers=worker_count) as executor:
             futures = {
-                executor.submit(_run_session, target, date, args.cached_only, args.no_astap): (target, date)
+                executor.submit(_run_session, target, date, args.cached_only, args.no_astap, args.local_only): (target, date)
                 for target, date in runs
             }
             for future in as_completed(futures):

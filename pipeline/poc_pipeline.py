@@ -13,7 +13,6 @@ import numpy as np
 import pandas as pd
 import requests
 import sep
-import astroalign as aa
 from astropy.coordinates import EarthLocation, SkyCoord
 from astropy.io import fits
 from astropy.time import Time
@@ -22,6 +21,8 @@ from astroquery.gaia import Gaia
 from exotic.api.plate_solution import PlateSolution
 from scipy.ndimage import gaussian_filter, median_filter
 from scipy.optimize import least_squares
+from scipy.spatial import cKDTree
+from skimage.transform import SimilarityTransform
 
 
 @dataclass
@@ -203,6 +204,67 @@ def _plate_solve(image_path: Path, header, output_dir: Path, timeout_minutes: in
     raise TimeoutError(f"Astrometry.net job {jobid} timed out")
 
 
+def _match_gaia_pattern(observed_xy: np.ndarray, catalog_xy: np.ndarray):
+    """Match this camera's near-north-up fields using translation voting.
+
+    A small scale/rotation grid seeds one-to-one nearest-neighbour fits. The
+    host star is not used to choose the transform. The final correspondence
+    set must also pass an alternating-star holdout check.
+    """
+    tree = cKDTree(catalog_xy)
+    best = None
+    for scale in (1.0, 0.99, 1.01):
+        for angle in (0.0, -0.02, 0.02):
+            initial = SimilarityTransform(scale=scale, rotation=angle)
+            delta = (catalog_xy[:, None, :] - initial(observed_xy)[None, :, :]).reshape(-1, 2)
+            hist, x_edges, y_edges = np.histogram2d(
+                delta[:, 0], delta[:, 1], bins=400, range=((0, 1600), (0, 1600)),
+            )
+            for index in np.argsort(hist.ravel())[-12:]:
+                ix, iy = np.unravel_index(index, hist.shape)
+                transform = SimilarityTransform(
+                    scale=scale, rotation=angle,
+                    translation=((x_edges[ix] + x_edges[ix + 1]) / 2,
+                                 (y_edges[iy] + y_edges[iy + 1]) / 2),
+                )
+                for radius in (6.0, 4.0, 2.0, 1.5):
+                    distance, nearest = tree.query(transform(observed_xy))
+                    good = np.flatnonzero(distance < radius)
+                    # Keep the closest image source per catalogue source.
+                    good = good[np.argsort(distance[good])]
+                    _, unique = np.unique(nearest[good], return_index=True)
+                    good = good[unique]
+                    if len(good) < 10:
+                        break
+                    candidate = SimilarityTransform()
+                    if not candidate.estimate(observed_xy[good], catalog_xy[nearest[good]]):
+                        break
+                    transform = candidate
+                distance, nearest = tree.query(transform(observed_xy))
+                good = np.flatnonzero(distance < 1.5)
+                good = good[np.argsort(distance[good])]
+                _, unique = np.unique(nearest[good], return_index=True)
+                good = np.sort(good[unique])
+                if len(good) < 10 or not 0.97 <= transform.scale <= 1.03 or abs(transform.rotation) > 0.03:
+                    continue
+                residual_rms = float(np.sqrt(np.mean(distance[good] ** 2)))
+                score = (len(good), -residual_rms)
+                if best is None or score > best[0]:
+                    best = (score, transform, good, nearest[good])
+    if best is None:
+        raise RuntimeError("No constrained Gaia pattern with at least 10 unique star matches")
+    _, transform, image_indices, catalog_indices = best
+    matched_image = observed_xy[image_indices]
+    matched_catalog = catalog_xy[catalog_indices]
+    validation = SimilarityTransform()
+    validation.estimate(matched_image[::2], matched_catalog[::2])
+    holdout = np.linalg.norm(validation(matched_image[1::2]) - matched_catalog[1::2], axis=1)
+    holdout_rms = float(np.sqrt(np.mean(holdout ** 2)))
+    if holdout_rms > 1.25:
+        raise RuntimeError(f"Gaia holdout residual is too large: {holdout_rms:.3f} px")
+    return transform, matched_image, matched_catalog, holdout_rms
+
+
 def _plate_solve_gaia(
     science_path: Path,
     dark: np.ndarray,
@@ -218,7 +280,10 @@ def _plate_solve_gaia(
     if catalog_cache.exists():
         catalog = pd.read_csv(catalog_cache)
     else:
-        catalog = _query_gaia_catalog(target_cfg["ra_deg"], target_cfg["dec_deg"], 1.2)
+        # Other nights of the same target share the identical search cone.
+        sibling_catalogs = sorted(output_dir.parent.glob("*/gaia_solver_catalog.csv"))
+        catalog = (pd.read_csv(sibling_catalogs[0]) if sibling_catalogs else
+                   _query_gaia_catalog(target_cfg["ra_deg"], target_cfg["dec_deg"], 1.2))
         catalog.to_csv(catalog_cache, index=False)
 
     _, subtracted, rms = _calibrated(science_path, dark)
@@ -228,31 +293,29 @@ def _plate_solve_gaia(
     if len(sources) < 6:
         raise RuntimeError(f"Gaia matcher found only {len(sources)} image stars")
     detected_xy = np.column_stack([sources["x"], sources["y"]])
-    sources = sources[np.argsort(sources["flux"])[-50:]]
+    sources = sources[
+        (sources["x"] > 12) & (sources["x"] < width - 12)
+        & (sources["y"] > 12) & (sources["y"] < height - 12)
+    ]
+    sources = sources[np.argsort(sources["flux"])[::-1]][:150]
     observed_xy = np.column_stack([sources["x"], (height - 1) - sources["y"]])
 
     target_coord = SkyCoord(target_cfg["ra_deg"], target_cfg["dec_deg"], unit="deg")
-    catalog = catalog.sort_values("g_mag").head(120)
+    catalog = catalog.sort_values("g_mag")
     catalog_coords = SkyCoord(catalog.ra.to_numpy(), catalog.dec.to_numpy(), unit="deg")
-    offset_lon, offset_lat = target_coord.spherical_offsets_to(catalog_coords)
     nominal_scale_deg = 5.16 / 3600.0
     synthetic_center = np.array([1000.0, 1000.0])
-    catalog_xy = np.column_stack([
-        synthetic_center[0] - offset_lon.deg / nominal_scale_deg,
-        synthetic_center[1] + offset_lat.deg / nominal_scale_deg,
-    ])
-    nearby = (
-        (np.abs(catalog_xy[:, 0] - synthetic_center[0]) < 700)
-        & (np.abs(catalog_xy[:, 1] - synthetic_center[1]) < 700)
-    )
-    catalog_xy = catalog_xy[nearby]
+    projection = WCS(naxis=2)
+    projection.wcs.crpix = synthetic_center + 1.0
+    projection.wcs.crval = [target_cfg["ra_deg"], target_cfg["dec_deg"]]
+    projection.wcs.ctype = ["RA---TAN", "DEC--TAN"]
+    projection.wcs.cdelt = [-nominal_scale_deg, nominal_scale_deg]
+    catalog_xy = np.array(projection.world_to_pixel(catalog_coords)).T
     if len(catalog_xy) < 12:
         raise RuntimeError(f"Gaia matcher found only {len(catalog_xy)} catalogue stars")
 
-    transform, (matched_image, matched_catalog) = aa.find_transform(
-        observed_xy,
-        catalog_xy,
-        max_control_points=50,
+    transform, matched_image, matched_catalog, holdout_rms = _match_gaia_pattern(
+        observed_xy, catalog_xy,
     )
     residuals = np.linalg.norm(transform(matched_image) - matched_catalog, axis=1)
     residual_rms = float(np.sqrt(np.mean(residuals**2)))
@@ -262,7 +325,7 @@ def _plate_solve_gaia(
         np.min(np.linalg.norm(detected_xy - target_pixel_array, axis=1))
     )
     match_count = len(matched_image)
-    if match_count < 5:
+    if match_count < 10:
         raise RuntimeError(f"Gaia matcher retained only {match_count} matched stars")
     if not 0.97 <= transform.scale <= 1.03:
         raise RuntimeError(f"Gaia matcher scale is implausible: {transform.scale}")
@@ -281,14 +344,17 @@ def _plate_solve_gaia(
     wcs.wcs.ctype = ["RA---TAN", "DEC--TAN"]
     synthetic_cd = np.array([[-nominal_scale_deg, 0.0], [0.0, nominal_scale_deg]])
     wcs.wcs.cd = synthetic_cd @ transform.params[:2, :2]
-    solved_header = fits.getheader(science_path).copy()
-    solved_header.update(wcs.to_header())
-    fits.writeto(cache, fits.getdata(science_path), solved_header, overwrite=True)
+    # Cache only the coordinate solution, never a copy of the raw science data.
+    fits.PrimaryHDU(header=wcs.to_header()).writeto(cache, overwrite=True)
     (output_dir / "plate_solution.json").write_text(
         json.dumps({
-            "solver": "Gaia catalogue star-pattern match",
+            "solver": "Gaia constrained catalogue match",
+            "reference_file": science_path.name,
+            "pixel_convention": "display_y_flipped",
             "matched_stars": match_count,
             "residual_rms_px": residual_rms,
+            "holdout_stars": len(matched_image[1::2]),
+            "holdout_rms_px": holdout_rms,
             "nearest_target_star_px": nearest_image_star,
             "scale_ratio": float(transform.scale),
             "rotation_radians": float(transform.rotation),
@@ -703,6 +769,7 @@ def run_target(
     date: str,
     allow_plate_solve: bool = True,
     prefer_astap: bool = True,
+    allow_remote_astrometry: bool = True,
 ) -> dict:
     root = Path(root).resolve()
     cfg = json.loads((root / "config" / "targets.json").read_text(encoding="utf-8"))[target]
@@ -723,10 +790,10 @@ def run_target(
         if allow_plate_solve:
             try:
                 wcs_path = _plate_solve_gaia(reference_path, dark, cfg, paths.output_dir)
-                plate_solution = "Gaia catalogue star-pattern match"
+                plate_solution = "Gaia constrained catalogue match"
             except Exception as exc:
                 gaia_error = repr(exc)
-        if not wcs_path.exists() and prefer_astap:
+        if not wcs_path.exists() and prefer_astap and allow_plate_solve:
             try:
                 wcs_path = _plate_solve_astap(reference_path, dark, paths.output_dir)
                 plate_solution = "ASTAP local"
@@ -734,7 +801,7 @@ def run_target(
             except Exception as exc:
                 astap_error = repr(exc)
         if not wcs_path.exists():
-            if not allow_plate_solve:
+            if not allow_plate_solve or not allow_remote_astrometry:
                 raise FileNotFoundError(
                     f"Missing cached WCS; Gaia result: {gaia_error}; ASTAP result: {astap_error}"
                 )

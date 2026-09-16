@@ -1,0 +1,12 @@
+{
+  "solver": "Gaia constrained catalogue match",
+  "reference_file": "HATP-10260905115415.fits",
+  "pixel_convention": "display_y_flipped",
+  "matched_stars": 145,
+  "residual_rms_px": 0.23656063625660204,
+  "holdout_stars": 72,
+  "holdout_rms_px": 0.18270834273942183,
+  "nearest_target_star_px": 0.1257449845942193,
+  "scale_ratio": 0.9997841728354834,
+  "rotation_radians": -0.00620174730734105
+}
