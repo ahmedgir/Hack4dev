@@ -83,6 +83,11 @@ conda activate exoplanet-poc
 .\run_poc.ps1 --target CoRoT-2 --date 2026-08-09 --cached-only
 ```
 
+عند معالجة حقل جديد بلا WCS محفوظ، يحاول الـpipeline أولًا مطابقة نجوم الصورة
+مباشرة مع Gaia، ويتحقق من عدد النجوم والتشتت والمقياس والدوران ووجود نجم عند
+الموضع المتوقع. يبقى ASTAP ثم Astrometry.net مساري fallback فقط إذا فشلت هذه
+المطابقة المقيدة.
+
 للتحقق من توفر ASTAP المحلي وقواعد النجوم على جهاز Windows:
 
 ```powershell
