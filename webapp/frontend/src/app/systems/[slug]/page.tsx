@@ -36,11 +36,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const system = getSystem((await params).slug);
   if (!system) return {};
-  const image = system.sessions[0]?.fieldImagePath;
+  const image = system.sessions[0]?.fieldImagePath ?? system.catalogImagePath;
+  const imageAlt = system.sessions[0]
+    ? `Processed telescope field marking the ${system.starName} host star`
+    : system.imageLabel;
   return {
     title: `${system.planetName} evidence`,
     description: system.shortDescription,
-    openGraph: { title: `${system.planetName} — Exoplanet Data Portal`, description: system.shortDescription, images: image ? [{ url: image, alt: system.imageLabel }] : [] },
+    openGraph: { title: `${system.planetName} — Exoplanet Data Portal`, description: system.shortDescription, images: image ? [{ url: image, alt: imageAlt }] : [] },
     twitter: { card: "summary_large_image", title: `${system.planetName} — Exoplanet Data Portal`, description: system.shortDescription, images: image ? [image] : [] },
   };
 }
@@ -53,16 +56,20 @@ export default async function SystemPage({ params }: Props) {
   const totalFrames = system.sessions.reduce((sum, session) => sum + session.totalFrames, 0);
   const acceptedFrames = system.sessions.reduce((sum, session) => sum + session.acceptedFrames, 0);
   const firstSession = system.sessions[0];
+  const heroImage = firstSession?.fieldImagePath ?? system.catalogImagePath;
+  const heroAlt = firstSession
+    ? `Processed telescope field marking the ${system.starName} host star`
+    : system.imageLabel;
 
   return (
     <main>
       <SiteHeader />
-      <section className={`page-hero system-detail-hero ${firstSession ? "page-hero-image" : "system-detail-no-image"}`}>
-        {firstSession && <img src={firstSession.fieldImagePath} alt={system.imageLabel} />}
+      <section className="page-hero system-detail-hero page-hero-image">
+        <img src={heroImage} alt={heroAlt} />
         <div className="hero-overlay" />
         <div className="page-hero-inner">
           <p className="breadcrumb">HOME / SYSTEMS / {system.planetName.toUpperCase()}</p>
-          <p className="eyebrow">{system.discoverySurvey} · {statusLabels[status]}</p>
+          <p className="eyebrow">{system.discoverySurvey} · {statusLabels[status]}{firstSession ? "" : " · ILLUSTRATIVE VISUAL"}</p>
           <h1>{system.planetName}</h1>
           <p>{system.shortDescription}</p>
         </div>

@@ -76,13 +76,17 @@ export default function SystemsPage() {
           );})}
         </div>
         <section className="awaiting-catalog">
-          <div className="awaiting-heading"><p className="section-label">AWAITING ANALYSIS</p><h2>Configured targets without a reviewed result.</h2><p>These systems remain in the dataset, but we do not reuse a generic planet image or imply that evidence has been produced.</p></div>
+          <div className="awaiting-heading"><p className="section-label">AWAITING ANALYSIS</p><h2>Configured targets without a reviewed result.</h2><p>Illustrations provide visual context only. They are kept separate from observational evidence until a session completes the scientific pipeline.</p></div>
           <div className="awaiting-grid">
             {awaitingSystems.map((system) => (
               <article className="awaiting-card" key={system.slug}>
-                <div><p>{system.discoverySurvey}</p><h3>{system.planetName}</h3>{system.alias && <small>Also cataloged as {system.alias}</small>}</div>
-                <dl><div><dt>Period</dt><dd>{system.periodDays} d</dd></div><div><dt>Published depth</dt><dd>{system.publishedDepthPercent}%</dd></div></dl>
-                <Link className="text-link" href={`/systems/${system.slug}`}>View target record</Link>
+                <div className="awaiting-image"><img src={system.catalogImagePath} alt={system.imageLabel} /><span>{imageType[system.imageKind]}</span></div>
+                <div className="awaiting-card-copy">
+                  <p>{system.discoverySurvey}</p><h3>{system.planetName}</h3>{system.alias && <small>Also cataloged as {system.alias}</small>}
+                  <dl><div><dt>Period</dt><dd>{system.periodDays} d</dd></div><div><dt>Published depth</dt><dd>{system.publishedDepthPercent}%</dd></div></dl>
+                  <p className="image-caption">{system.imageLabel}</p>
+                  <Link className="text-link" href={`/systems/${system.slug}`}>View target record</Link>
+                </div>
               </article>
             ))}
           </div>

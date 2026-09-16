@@ -9,20 +9,19 @@ export const metadata: Metadata = {
 
 const sources = [
   {
-    type: "SYSTEM-SPECIFIC ARTIST’S CONCEPT",
-    title: "CoRoT-2 b artist’s concept",
-    used: "CoRoT-2 b catalog card",
-    credit: "NASA Science — Exoplanet Catalog",
-    note: "An illustration of the system, not a telescope photograph. NASA is acknowledged; use does not imply NASA endorsement.",
-    href: "https://science.nasa.gov/exoplanet-catalog/corot-2-b/",
+    type: "TEAM-PROVIDED ILLUSTRATIVE VISUALS",
+    title: "Target illustrations and size-comparison graphics",
+    used: "System catalog cards and awaiting-analysis page heroes",
+    credit: "Credits embedded where present (NASA / ESA / A. Simon); remaining original URLs require verification",
+    note: "These visuals are presentation context only. They are explicitly separated from processed telescope fields and never used as evidence that a transit was recovered.",
   },
   {
-    type: "REPRESENTATIVE ARTIST’S CONCEPT",
-    title: "Hot-Jupiter concept",
-    used: "TrES-1 b, TrES-5 b, and HAT-P-10 b placeholders",
-    credit: "NASA Science — Exoplanet Exploration",
-    note: "Used only where no project field is published. It represents the planet class and is explicitly not presented as an image of those individual planets.",
-    href: "https://science.nasa.gov/exoplanets/gas-giant/",
+    type: "ASTROMETRIC REFERENCE",
+    title: "Gaia Data Release 3",
+    used: "Constrained star-pattern WCS matching and comparison-star selection",
+    credit: "ESA Gaia mission and the Gaia Data Processing and Analysis Consortium",
+    note: "Image-star patterns are matched against Gaia coordinates with scale, rotation, residual, and target-position checks. The method was regression-tested against seven cached Astrometry.net solutions.",
+    href: "https://www.cosmos.esa.int/web/gaia/dr3",
   },
   {
     type: "PROCESSED OBSERVATION",
@@ -66,7 +65,7 @@ export default function SourcesPage() {
               <span className="source-number">{String(index + 1).padStart(2, "0")}</span>
               <div><p className="source-type">{source.type}</p><h2>{source.title}</h2><p>{source.note}</p></div>
               <dl><div><dt>Used for</dt><dd>{source.used}</dd></div><div><dt>Credit</dt><dd>{source.credit}</dd></div></dl>
-              <a className="nasa-button" href={source.href} target="_blank" rel="noreferrer">Open original source <span aria-hidden="true">↗</span></a>
+              {source.href ? <a className="nasa-button" href={source.href} target="_blank" rel="noreferrer">Open original source <span aria-hidden="true">↗</span></a> : <span className="source-pending">Original links pending verification</span>}
             </article>
           ))}
         </div>

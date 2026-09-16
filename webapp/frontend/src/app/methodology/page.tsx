@@ -10,8 +10,9 @@ export const metadata: Metadata = {
 
 const tools = [
   { name: "Astropy", tag: "FITS · WCS · TIME", purpose: "Reads the original FITS images, interprets World Coordinate System headers, converts sky coordinates to pixels, and handles observation time in astronomical standards.", output: "Calibrated image arrays, target coordinates, and BJD timestamps." },
-  { name: "ASTAP", tag: "PLATE SOLVING", purpose: "Solves the reference exposure locally when a reliable WCS solution is not already available. It connects the image geometry to the real sky.", output: "A solved FITS header containing the WCS transformation." },
-  { name: "Astroquery + Gaia", tag: "REFERENCE CATALOG", purpose: "Queries Gaia for suitable stars in the same field so atmospheric and instrumental changes can be measured against stable references.", output: "Coordinates and identifiers for the comparison-star ensemble." },
+  { name: "Astroalign + Gaia", tag: "CONSTRAINED SKY MATCH", purpose: "Matches stars detected in the reference exposure to Gaia DR3 around the known host coordinate. Scale, rotation, residual error, and the presence of a detected star at the predicted target position must all pass before the WCS is accepted.", output: "A solved WCS header plus match-count and residual diagnostics." },
+  { name: "ASTAP + Astrometry.net", tag: "PLATE-SOLVE FALLBACK", purpose: "Cached Astrometry.net solutions remain the reference baseline and the online service is a fallback for a field that the constrained Gaia matcher cannot solve. ASTAP was attempted on 18 uncached sessions and solved none of these undersampled images.", output: "A fallback WCS when a solver genuinely succeeds; failed attempts remain documented." },
+  { name: "Astroquery", tag: "REFERENCE CATALOG", purpose: "Queries Gaia for suitable stars in the same field so atmospheric and instrumental changes can be measured against stable references.", output: "Coordinates and identifiers for the comparison-star ensemble." },
   { name: "SEP", tag: "SOURCE EXTRACTION", purpose: "Estimates the sky background and detects compact light sources. Subtracting the background prevents sky glow from being counted as stellar flux.", output: "Background-subtracted frames and detected source candidates." },
   { name: "NumPy", tag: "NUMERICAL CORE", purpose: "Carries the image arrays and performs robust numerical operations throughout calibration, registration, photometry, and quality control.", output: "Fast, reproducible numerical measurements for every frame." },
   { name: "SciPy", tag: "FILTERING · FITTING", purpose: "Applies controlled image filters and fits a simple trapezoid transit model with least-squares optimization.", output: "Frame alignment support and fitted transit parameters." },
@@ -61,9 +62,9 @@ export default function MethodologyPage() {
           <h2>Installed does not mean used.</h2>
         </div>
         <div>
-          <p>The project environment also contains Photutils, Astroalign, and Plotly. They remain available for future pipeline work, but the current proof-of-concept path does not call them, so we do not credit them as part of this result.</p>
+          <p>The project environment also contains Photutils and Plotly. They remain available for future pipeline work, but the current proof-of-concept path does not call them, so we do not credit them as part of this result.</p>
           <p>EXOTIC is used as a separate validation path, not as a hidden stage inside the project pipeline. It analyzes the same observations, so this is an independent software check—not an independent astronomical observation.</p>
-          <p>ASTAP is used when a fresh local plate solution is required; a cached solved reference may be reused to keep repeated analysis deterministic.</p>
+          <p>The Gaia matcher was regression-tested against all seven cached reference solutions: target-position error ranged from 0.075 to 0.421 pixel. This removes the Astrometry.net queue from the normal path without accepting an unverified approximate coordinate.</p>
         </div>
       </section>
 
