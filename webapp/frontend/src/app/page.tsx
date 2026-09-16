@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { featuredSystem } from "@/data/systems";
-
-const totalFrames = featuredSystem.sessions.reduce((sum, session) => sum + session.totalFrames, 0);
-const acceptedFrames = featuredSystem.sessions.reduce((sum, session) => sum + session.acceptedFrames, 0);
+import { getSystemStatus, systems } from "@/data/systems";
 
 export default function Home() {
   return (
@@ -36,16 +33,19 @@ export default function Home() {
           <p>When the planet crosses in front of the star, it blocks a small fraction of the light. We compare that signal with reference stars and with published timing, depth, and duration values before stating what the observation can support.</p>
         </article>
 
-        <aside className="featured-record">
-          <p className="section-label">FEATURED OBSERVATION</p>
-          <h3>{featuredSystem.planetName}</h3>
-          <p>{featuredSystem.shortDescription} The recovery now includes two observing nights and an EXOTIC cross-check.</p>
-          <dl>
-            <div><dt>Orbital period</dt><dd>{featuredSystem.periodDays.toFixed(2)} days</dd></div>
-            <div><dt>Published depth</dt><dd>{featuredSystem.publishedDepthPercent}%</dd></div>
-            <div><dt>Accepted frames</dt><dd>{acceptedFrames} / {totalFrames}</dd></div>
-          </dl>
-          <Link href="/systems/corot-2" className="nasa-button">Open the observing session <span aria-hidden="true">→</span></Link>
+        <aside className="featured-record system-index-record">
+          <p className="section-label">ALL TARGET SYSTEMS</p>
+          <h3>Eight known planets</h3>
+          <p>CoRoT-2 is the featured scientific case—not the only planet. Open any target to see its observations, current result, or pending-analysis status.</p>
+          <div className="home-system-list">
+            {systems.map((system) => (
+              <Link href={`/systems/${system.slug}`} key={system.slug}>
+                <span>{system.planetName}</span>
+                <small className={getSystemStatus(system)}>{system.sessions.length ? `${system.sessions.length} reviewed` : "processing"}</small>
+              </Link>
+            ))}
+          </div>
+          <Link href="/systems" className="nasa-button">Compare all systems <span aria-hidden="true">→</span></Link>
         </aside>
       </section>
 

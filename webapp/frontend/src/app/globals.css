@@ -60,6 +60,13 @@ button, input { font: inherit; }
 .featured-record dl div { padding: 12px 0; display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); }
 .featured-record dt { font-size: 13px; color: var(--body); }
 .featured-record dd { margin: 0; font: 700 13px var(--mono); }
+.home-system-list { margin: 24px 0; border-top: 1px solid var(--line); }
+.home-system-list a { padding: 10px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); color: var(--ink); }
+.home-system-list a:hover span { color: var(--red); }
+.home-system-list span { font-weight: 800; }
+.home-system-list small { color: #6f7277; font: 700 9px var(--mono); text-transform: uppercase; }
+.home-system-list small.promising_preliminary_transit { color: var(--green); }
+.home-system-list small.transit_like_but_parameters_inconsistent { color: #9a5a16; }
 .nasa-button { display: inline-flex; align-items: center; gap: 14px; background: var(--red); color: white; padding: 13px 17px; font-weight: 800; font-size: 14px; }
 .nasa-button span { font-size: 20px; }
 
