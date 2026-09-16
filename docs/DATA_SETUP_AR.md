@@ -36,6 +36,15 @@ conda activate exoplanet-poc
 
 استخدموا Google Drive أو Dropbox أو قرصًا محليًا لمجلدي `observations` و`calibration`. لا تضيفوا ملفات FITS إلى Git، ولا تستخدموا Git LFS قبل اتفاق الفريق؛ البيانات الأصلية منفصلة عن كود المشروع ونتائجه المشتقة.
 
+بديلًا عن النقل اليدوي، يحتوي `database/metadata/observations.csv` رابط MicroObservatory الأصلي والمسار والحجم لكل ملف. على جهاز جديد يمكن استعادة المجموعة وترتيبها تلقائيًا:
+
+```powershell
+conda activate exoplanet-poc
+python scripts/restore_dataset.py
+```
+
+الأمر يكمل التنزيل الناقص، ويتجاوز الملفات الصحيحة الموجودة، ويتحقق من الحجم ومن إمكانية فتح FITS قبل اعتماد الملف. لا يحتاج حسابًا أو مفتاح API.
+
 ## التحقق بعد النقل
 
 يجب أن تظهر الأعداد التالية عند اكتمال المجموعة:
