@@ -26,7 +26,7 @@ function statusLabel(accepted: boolean) {
 
 export function TransitExplorer({ session }: { session: SessionRecord }) {
   const [points, setPoints] = useState<LightPoint[]>([]);
-  const [activeIndex, setActiveIndex] = useState(43);
+  const [activeIndex, setActiveIndex] = useState(session.referenceFrameIndex ?? Math.floor(session.totalFrames / 2));
   const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export function TransitExplorer({ session }: { session: SessionRecord }) {
           <h2 id="explorer-title">Follow the light, frame by frame.</h2>
           <p>Every point is a measurement from a real telescope image. Move through the timeline to inspect its context.</p>
         </div>
-        <div className="session-stamp" dir="ltr">CoRoT-2 · 2026-08-09</div>
+        <div className="session-stamp">CoRoT-2 · {session.date}</div>
       </div>
 
       <div className="explorer-grid">

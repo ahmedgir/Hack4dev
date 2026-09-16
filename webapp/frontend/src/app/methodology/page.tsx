@@ -17,6 +17,7 @@ const tools = [
   { name: "SciPy", tag: "FILTERING · FITTING", purpose: "Applies controlled image filters and fits a simple trapezoid transit model with least-squares optimization.", output: "Frame alignment support and fitted transit parameters." },
   { name: "Pandas", tag: "TABLES · QUALITY CONTROL", purpose: "Collects timestamps, flux, signal-to-noise, registration quality, acceptance flags, and rejection reasons into auditable tables.", output: "Machine-readable per-frame measurements and summaries." },
   { name: "Matplotlib", tag: "SCIENTIFIC OUTPUT", purpose: "Renders the verification field and diagnostic light-curve figures used during analysis and review.", output: "Static scientific figures that can be checked outside the website." },
+  { name: "EXOTIC 4.3.1", tag: "CROSS-VALIDATION", purpose: "Repeats alignment, PSF photometry, comparison-star selection, and transit fitting through an established independent software path using the same raw images.", output: "A second set of transit depths, timings, uncertainties, and residual diagnostics for both nights." },
 ];
 
 export default function MethodologyPage() {
@@ -60,7 +61,8 @@ export default function MethodologyPage() {
           <h2>Installed does not mean used.</h2>
         </div>
         <div>
-          <p>The project environment also contains Photutils, EXOTIC, Astroalign, and Plotly. They are available for future pipeline work, but the current proof-of-concept path does not call them, so we do not credit them as part of this result.</p>
+          <p>The project environment also contains Photutils, Astroalign, and Plotly. They remain available for future pipeline work, but the current proof-of-concept path does not call them, so we do not credit them as part of this result.</p>
+          <p>EXOTIC is used as a separate validation path, not as a hidden stage inside the project pipeline. It analyzes the same observations, so this is an independent software check—not an independent astronomical observation.</p>
           <p>ASTAP is used when a fresh local plate solution is required; a cached solved reference may be reused to keep repeated analysis deterministic.</p>
         </div>
       </section>

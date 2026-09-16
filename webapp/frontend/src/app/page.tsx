@@ -3,7 +3,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { featuredSystem } from "@/data/systems";
 
-const session = featuredSystem.sessions[0];
+const totalFrames = featuredSystem.sessions.reduce((sum, session) => sum + session.totalFrames, 0);
+const acceptedFrames = featuredSystem.sessions.reduce((sum, session) => sum + session.acceptedFrames, 0);
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
         <div className="hero-inner">
           <p className="breadcrumb">HOME / DISCOVERY TOOL / TRANSIT EXPLORER</p>
           <div className="hero-copy">
-            <p className="eyebrow">REAL TELESCOPE DATA · 87 FITS FRAMES</p>
+            <p className="eyebrow">REAL TELESCOPE DATA · 173 FITS FRAMES · TWO NIGHTS</p>
             <h1>Exoplanet<br />Transit Explorer</h1>
             <p>An evidence-first journey from raw telescope images to a measurable dip in the light of a distant star.</p>
             <div className="hero-actions">
@@ -38,11 +39,11 @@ export default function Home() {
         <aside className="featured-record">
           <p className="section-label">FEATURED OBSERVATION</p>
           <h3>{featuredSystem.planetName}</h3>
-          <p>{featuredSystem.shortDescription}</p>
+          <p>{featuredSystem.shortDescription} The recovery now includes two observing nights and an EXOTIC cross-check.</p>
           <dl>
             <div><dt>Orbital period</dt><dd>{featuredSystem.periodDays.toFixed(2)} days</dd></div>
             <div><dt>Published depth</dt><dd>{featuredSystem.publishedDepthPercent}%</dd></div>
-            <div><dt>Accepted frames</dt><dd>{session.acceptedFrames} / {session.totalFrames}</dd></div>
+            <div><dt>Accepted frames</dt><dd>{acceptedFrames} / {totalFrames}</dd></div>
           </dl>
           <Link href="/explorer" className="nasa-button">Open the observing session <span aria-hidden="true">→</span></Link>
         </aside>

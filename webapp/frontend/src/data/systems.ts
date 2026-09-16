@@ -11,6 +11,9 @@ export type SessionRecord = {
   date: string;
   totalFrames: number;
   acceptedFrames: number;
+  referenceFrameIndex?: number;
+  measuredDepthPercent?: number;
+  residualScatterPercent?: number;
   status: ScientificStatus;
   summaryPath: string;
   lightCurvePath: string;
