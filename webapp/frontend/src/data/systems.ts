@@ -45,6 +45,15 @@ export type SystemRecord = {
   imageKind: "artist_concept" | "verified_field" | "representative_concept";
   imageLabel: string;
   sourceUrl: string;
+  processingProgress?: {
+    date: string;
+    auditedFrames: number;
+    totalFrames: number;
+    fileAuditComplete: boolean;
+    coordinateSolution: "verified" | "unavailable";
+    photometryComplete: boolean;
+    reason: string;
+  };
   sessions: SessionRecord[];
 };
 
@@ -67,5 +76,5 @@ export const statusLabels: Record<ScientificStatus, string> = {
   promising_preliminary_transit: "Promising preliminary recovery",
   insufficient_for_transit_claim: "Insufficient for a transit claim",
   transit_like_but_parameters_inconsistent: "Transit-like, but inconsistent",
-  not_analysed: "Awaiting analysis",
+  not_analysed: "Reviewed — no verified solution",
 };

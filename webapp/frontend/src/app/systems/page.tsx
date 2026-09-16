@@ -76,7 +76,7 @@ export default function SystemsPage() {
           );})}
         </div>
         <section className="awaiting-catalog">
-          <div className="awaiting-heading"><p className="section-label">AWAITING ANALYSIS</p><h2>Configured targets without a reviewed result.</h2><p>Illustrations provide visual context only. They are kept separate from observational evidence until a session completes the scientific pipeline.</p></div>
+          <div className="awaiting-heading"><p className="section-label">REVIEWED LIMITATION</p><h2>Audited data without a verified light curve.</h2><p>The remaining target was inspected and its limitation is reported explicitly. Its illustration provides context only and is separate from observational evidence.</p></div>
           <div className="awaiting-grid">
             {awaitingSystems.map((system) => (
               <article className="awaiting-card" key={system.slug}>
@@ -84,6 +84,7 @@ export default function SystemsPage() {
                 <div className="awaiting-card-copy">
                   <p>{system.discoverySurvey}</p><h3>{system.planetName}</h3>{system.alias && <small>Also cataloged as {system.alias}</small>}
                   <dl><div><dt>Period</dt><dd>{system.periodDays} d</dd></div><div><dt>Published depth</dt><dd>{system.publishedDepthPercent}%</dd></div></dl>
+                  {system.processingProgress && <p className="system-summary">{system.processingProgress.auditedFrames}/{system.processingProgress.totalFrames} frames audited · coordinate solution unavailable</p>}
                   <p className="image-caption">{system.imageLabel}</p>
                   <Link className="text-link" href={`/systems/${system.slug}`}>View target record</Link>
                 </div>

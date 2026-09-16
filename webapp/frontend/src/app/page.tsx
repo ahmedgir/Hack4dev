@@ -41,7 +41,7 @@ export default function Home() {
             {systems.map((system) => (
               <Link href={`/systems/${system.slug}`} key={system.slug}>
                 <span>{system.planetName}</span>
-                <small className={getSystemStatus(system)}>{system.sessions.length ? `${system.sessions.length} reviewed` : "processing"}</small>
+                <small className={getSystemStatus(system)}>{system.sessions.length ? `${system.sessions.length} reviewed` : "reviewed · blocked"}</small>
               </Link>
             ))}
           </div>

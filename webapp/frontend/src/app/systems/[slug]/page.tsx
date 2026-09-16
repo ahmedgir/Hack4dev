@@ -88,7 +88,7 @@ export default async function SystemPage({ params }: Props) {
       </section>
 
       {system.sessions.length ? <SystemExplorer sessions={system.sessions} starName={system.starName} /> : (
-        <section className="awaiting-evidence"><p className="section-label">EVIDENCE STATUS</p><h2>Awaiting a pipeline-complete session.</h2><p>No light curve, fitted depth, or success claim is shown until real observation products pass the shared data validation contract.</p><Link className="text-link" href="/methodology">Review the required analysis →</Link></section>
+        <section className="awaiting-evidence"><p className="section-label">EVIDENCE STATUS</p><h2>Review complete; coordinate solution unavailable.</h2><p>{system.processingProgress?.reason ?? "No verified light curve is available for this target."}</p><p>{system.processingProgress ? `${system.processingProgress.auditedFrames} of ${system.processingProgress.totalFrames} frames passed the file audit on ${system.processingProgress.date}. Photometry was not run because the host-star pixel position could not be verified.` : "No light curve, fitted depth, or success claim is shown until real observation products pass the shared data validation contract."}</p><Link className="text-link" href="/methodology">Review the required analysis →</Link></section>
       )}
 
       {system.slug === "corot-2" && (
@@ -104,9 +104,9 @@ export default async function SystemPage({ params }: Props) {
       <section className="verdict">
         <div className="verdict-copy"><p className="section-label">INTERPRETATION</p><h2>{interpretation.title}</h2><p>{interpretation.body}</p><a className="text-link light" href={system.sourceUrl} target="_blank" rel="noreferrer">Open NASA catalog record ↗</a></div>
         <div className="result-numbers">
-          <div><span>REVIEWED SESSIONS</span><strong>{system.sessions.length}</strong></div>
-          <div><span>ACCEPTED FRAMES</span><strong>{system.sessions.length ? `${acceptedFrames} / ${totalFrames}` : "—"}</strong></div>
-          <div><span>{firstSession?.fitValid ? "MEASURED DEPTH" : "PUBLISHED DEPTH"}</span><strong>{firstSession?.fitValid ? `${firstSession.measuredDepthPercent?.toFixed(2)}%` : `${system.publishedDepthPercent}%`}</strong></div>
+          <div><span>{system.sessions.length ? "REVIEWED SESSIONS" : "FILES AUDITED"}</span><strong>{system.sessions.length ? system.sessions.length : `${system.processingProgress?.auditedFrames ?? 0} / ${system.processingProgress?.totalFrames ?? 0}`}</strong></div>
+          <div><span>{system.sessions.length ? "ACCEPTED FRAMES" : "COORDINATE SOLUTION"}</span><strong>{system.sessions.length ? `${acceptedFrames} / ${totalFrames}` : "Unavailable"}</strong></div>
+          <div><span>{firstSession?.fitValid ? "MEASURED DEPTH" : system.sessions.length ? "PUBLISHED DEPTH" : "LIGHT CURVE"}</span><strong>{firstSession?.fitValid ? `${firstSession.measuredDepthPercent?.toFixed(2)}%` : system.sessions.length ? `${system.publishedDepthPercent}%` : "Not produced"}</strong></div>
         </div>
       </section>
       <SiteFooter />

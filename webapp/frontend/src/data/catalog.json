@@ -245,11 +245,20 @@
     "raDeg": 286.0408755,
     "decDeg": 36.632536,
     "gaiaMagnitude": 11.5565,
-    "shortDescription": "The target is configured, but no pipeline-complete observing session has been reviewed for publication yet.",
+    "shortDescription": "All 91 frames were audited. The field contains too few usable stars for a verified coordinate solution, so photometry and a transit claim were not produced.",
     "catalogImagePath": "/media/catalog/tres-1/team-illustration.png",
     "imageKind": "representative_concept",
     "imageLabel": "Team-provided size comparison for TrES-1 b — illustrative, not an observation",
     "sourceUrl": "https://science.nasa.gov/exoplanet-catalog/tres-1-b/",
+    "processingProgress": {
+      "date": "2026-08-06",
+      "auditedFrames": 91,
+      "totalFrames": 91,
+      "fileAuditComplete": true,
+      "coordinateSolution": "unavailable",
+      "photometryComplete": false,
+      "reason": "The best individual frame contained only 11 detected stars, and the median stack contained 5. This is below the verified Gaia-matching requirement, so no target position or light curve is published."
+    },
     "sessions": []
   },
   {
