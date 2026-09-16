@@ -11,6 +11,7 @@ outputs/**/astap_*.log
 outputs/**/astap_attempt.json
 outputs/**/plate_solve_*.png
 outputs/notebook_preview/
+outputs/exotic_validation/*/input_fits/
 Untitled*.ipynb
 exotic.log
 eaConf.json
